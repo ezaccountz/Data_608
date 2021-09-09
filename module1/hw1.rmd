@@ -1,0 +1,172 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+**Principles of Data Visualization and Introduction to ggplot2**
+
+I have provided you with data about the 5,000 fastest growing companies in the US, as compiled by Inc. magazine. lets read this in:
+
+```{r}
+
+inc <- read.csv("https://raw.githubusercontent.com/charleyferrari/CUNY_DATA_608/master/module1/Data/inc5000_data.csv", header= TRUE)
+
+```
+
+And lets preview this data:
+
+```{r}
+
+head(inc)
+
+```
+```{r}
+
+summary(inc)
+
+```
+
+Think a bit on what these summaries mean. Use the space below to add some more relevant non-visual exploratory information you think helps you understand this data:
+
+```{r}
+
+# Insert your code here, create more chunks as necessary
+
+length(inc$Name)
+```
+The number of rows/entries in the data is 5001
+
+
+Number of unique values for each variable
+```{r}
+sapply(inc, function(x) length(unique(x)))
+```
+There are 4999 Rank but 5001 companies (Name), so there are companies with the same rank. 
+There are 5001 data entries and 5001 unique company names, so there is no duplicated entries 
+There are 52 state values instead of 50, so the list includes DC and Puerto Rico.
+
+Number of missing values for each variable
+
+```{r}
+sapply(inc, function(x) sum(is.na(x)))
+```
+There are 12 rows with missing Employees value, we need to handle it when doing analysis
+
+Industries with the smallest number of companies
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+head(arrange(count(inc, Industry),n))
+```
+All industries have more than 40 companies, the data is sufficient for analysis
+
+
+## Question 1
+
+Create a graph that shows the distribution of companies in the dataset by State (ie how many are in each state). There are a lot of States, so consider which axis you should use. This visualization is ultimately going to be consumed on a 'portrait' oriented screen (ie taller than wide), which should further guide your layout choices.
+
+```{r fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
+
+# Answer Question 1 here
+library(ggplot2)
+
+state_dist <- count(inc, State)
+
+ggplot(state_dist,aes(x = reorder(State, n), y = n)) +
+  geom_bar(stat="identity", fill='skyblue') +
+  scale_y_continuous(n.breaks = 10)+
+  coord_flip() +
+  labs(title = "Distribution of companies by State", x= "", y = "Number of companies") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+## Quesiton 2
+
+Lets dig in on the state with the 3rd most companies in the data set. Imagine you work for the state and are interested in how many people are employed by companies in different industries. Create a plot that shows the average and/or median employment by industry for companies in this state (only use cases with full data, use R's `complete.cases()` function.) In addition to this, your graph should show how variable the ranges are, and you should deal with outliers.
+
+
+```{r}
+
+# Answer Question 2 here
+third_state <- arrange(state_dist,desc(n))$State[3]
+indust_dist <- filter(inc, State == third_state)
+
+if (all(complete.cases(indust_dist))) {
+  print("the data is complete")
+} else {
+  indust_dist <- filter(indust_dist, complete.cases(indust_dist))
+  print("the data is incomplete, the entries with missing data are removed")
+}
+```
+```{r fig.height=4, fig.width=10, message=FALSE, warning=FALSE}
+library(grid)
+library(gridExtra)
+
+indust_dist$Industry = with(indust_dist, reorder(Industry, Employees, median))
+
+p1 <- ggplot(indust_dist, aes(x=Industry, y=Employees)) + 
+  geom_boxplot(outlier.size=1) +
+  coord_flip(ylim = c(0,1150)) +
+  labs(title = "Distribution of Employees by Industry", x= "", y="Number of Employees") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(size=7))
+
+p2 <- ggplot(indust_dist, aes(x=Industry, y=Employees)) + 
+  geom_boxplot(outlier.size=1) +
+  coord_flip(ylim = c(1640,10000)) +
+  labs(title = "", x= "", y="No data between breaks") +
+  theme_minimal() +
+  theme(axis.ticks.y = element_blank(),axis.text.y = element_blank(),axis.text.x = element_text(size=7))
+
+p3 <- ggplot(indust_dist, aes(x=Industry, y=Employees)) + 
+  geom_boxplot(outlier.size=1) +
+  scale_y_continuous(n.breaks = 2)+
+  coord_flip(ylim = c(30000,35000)) +
+  labs(title = "", x= "", y="") +
+  theme_minimal() +
+  theme(axis.ticks.y = element_blank(),axis.text.y = element_blank(),axis.text.x = element_text(size=7))
+
+lay <- rbind(c(1,1,1,1,1,1,1,2,2,3))
+grid.arrange(p1, p2, p3, layout_matrix = lay)
+
+```
+
+## Question 3
+
+Now imagine you work for an investor and want to see which industries generate the most revenue per employee. Create a chart that makes this information clear. Once again, the distribution per industry should be shown.
+
+```{r}
+
+# Answer Question 3 here
+revenue_df <- select(inc, Industry,Revenue,Employees)
+
+if (all(complete.cases(revenue_df))) {
+  print("the data is complete")
+} else {
+  revenue_df <- filter(revenue_df, complete.cases(revenue_df))
+  print("the data is incomplete, the entries with missing data are removed")
+}
+
+revenue_dist <-  mutate(revenue_df, Revenue_Per_Emp = Revenue/Employees) 
+```
+```{r fig.width=9, fig.height=4}
+revenue_dist2 <- revenue_dist %>%
+  group_by(Industry) %>%
+  summarize(Mean_Revenue=mean(Revenue_Per_Emp))
+
+revenue_dist$Industry = with(revenue_dist, reorder(Industry, Revenue_Per_Emp, mean))
+
+ggplot(revenue_dist, aes(x=Industry, y=Revenue_Per_Emp)) + 
+  geom_boxplot(outlier.size=1) +
+  geom_point(data = revenue_dist2, mapping=aes(x=reorder(Industry, Mean_Revenue), y=Mean_Revenue, color = "average"),shape=15)+
+  scale_y_log10()+
+  coord_flip() +
+  labs(title = "Distribution of Revenue Per Employee", x= "", y="Revenue (log10)") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_colour_manual(name = '', values =c('average'='blue'), labels = c('Average Revene'))
+```
+
