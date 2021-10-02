@@ -6,6 +6,15 @@ library(shiny)
 df <- read.csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/module3/data/cleaned-cdc-mortality-1999-2010-2.csv')
 #df <- read.csv('E:/SPS/DATA 608/Data_608/module3/data/cleaned-cdc-mortality-1999-2010-2.csv')
 
+states <- unique(df$State)
+
+df2 <- df %>% 
+  group_by(Year,ICD.Chapter) %>% 
+  summarise(State = "Average",
+            Deaths = mean(Deaths),
+            Population = mean(Population),
+            Crude.Rate = 100000 * sum(Deaths)/sum(Population)) %>% 
+  bind_rows(df)
 
 ui <- fluidPage(
   tabsetPanel( 
@@ -15,20 +24,19 @@ ui <- fluidPage(
         sliderInput('year_q1','Year',min(df$Year),max(df$Year),2010,1,width=600,
                   sep = ""),
         selectInput('causes_q1', 'Causes', 
-                  unique(df$ICD.Chapter), selected='Neoplasms',width = 600)),
-        mainPanel(plotlyOutput('plot1_q1')
-      )
+                  unique(df$ICD.Chapter), selected='Neoplasms',width = 600)
+      ),
+      mainPanel(plotlyOutput('plot1_q1'))
     ),
     #---------------------------------------------------------------------------
     tabPanel(title = "Question 2",
       sidebarPanel(
         htmlOutput('message_q2'),
-        sliderInput('year_q2','Year',min(df$Year),max(df$Year),2010,1,width=600,
-                  sep = "",animate=TRUE),
         selectInput('causes_q2', 'Causes', 
-                  unique(df$ICD.Chapter), selected='Neoplasms',width = 600)),
-        mainPanel(plotlyOutput('plot1_q2')
-      )
+                  unique(df$ICD.Chapter), selected='Neoplasms',width = 600),
+        checkboxGroupInput("States_q2", "States",states,inline = TRUE)
+      ),
+      mainPanel(plotlyOutput('plot1_q2'))
     )
   )
 )
@@ -49,12 +57,12 @@ server <- function(input, output, session) {
     
     df2 <- data_q1()
     if (nrow(df2) == 0) {
-      paste("<h3><center>No Data for<b>",input$causes_q1,
-            "</b>in",input$year_q1,"</center></h3>", sep =" ") 
+      paste("<h4><center>No Data for<b>",input$causes_q1,
+            "</b>in",input$year_q1,"</center></h4>", sep =" ") 
     }
     else {
-      paste("<h3><center>The Mortality Rates for<b>",input$causes_q1,
-            "</b>in",input$year_q1,"</center></h3>", sep =" ")
+      paste("<h4><center>The Mortality Rates for<b>",input$causes_q1,
+            "</b>in",input$year_q1," (scaled by 1/100000)</center></h4>", sep =" ")
     }
   })
 
@@ -79,78 +87,54 @@ server <- function(input, output, session) {
 #-------------------------------------------------------------------------------
   
   data_q2 <- reactive({
-    df2 <- df %>%
-      filter(Year == input$year_q2) %>%
+    df3 <- df2 %>%
       filter(ICD.Chapter == input$causes_q2) 
-    df2
+    df3
   })
   
-  max_rate_q2 <-reactive(
-    df %>%
-      filter(ICD.Chapter == input$causes_q2) %>% 
-      select(Crude.Rate) %>% 
-      max()
+  state2_q2 <-reactive(
+    input$States_q2
   )
   
   output$message_q2 <- renderText({
+    paste("<h4><center>The Mortality Rates for<b>",input$causes_q2,
+                   "</b> (scaled by 1/100000) </center></h4>", sep =" ")
     
-    df2 <- data_q2()
-    if (nrow(df2) == 0) {
-      paste("<h3><center>No Data for<b>",input$causes_q2,
-            "</b>in",input$year_q2,"</center></h3>", sep =" ") 
-    }
-    else {
-      paste("<h3><center>The Mortality Rates for<b>",input$causes_q2,
-            "</b>in",input$year_q2,"</center></h3>", sep =" ")
-    }
+    # df2 <- data_q2()
+    # if (nrow(df2) == 0) {
+    #   paste("<h3><center>No Data for<b>",input$causes_q2,
+    #         "</b>in",input$year_q2,"</center></h3>", sep =" ") 
+    # }
+    # else {
+    #   paste("<h3><center>The Mortality Rates for<b>",input$causes_q2,
+    #         "</b>in",input$year_q2,"</center></h3>", sep =" ")
+    # }
   })
   
   output$plot1_q2 <- renderPlotly({
     
-    df2 <- data_q2()
-    if (nrow(df2) == 0) {
-      plotly_empty(type = "bar",width = 1,height = 1,)
+    df3 <- data_q2()
+    if (nrow(df3) == 0) {
+      plotly_empty(type = "scatter",width = 1,height = 1,)
     }
     else {
-      mean_mortality <- 100000*sum(df2$Deaths)/sum(df2$Population)
-      df2$colors <- ifelse(df2$Crude.Rate > mean_mortality, "#349ceb", "#34dbeb")
+      temp <- filter(df3, State == "Average")
       
-      a <- list(
-        x = mean_mortality,
-        text = "average",
-        xref = "x",
-        yref = "paper",
-        showarrow = TRUE,
-        arrowhead = 1,
-        ax = 50,
-        ay = -50,
-        font = list(size = 20,bold = TRUE)
+      fig <- plot_ly(
+        x = temp$Year,
+        y = temp$Crude.Rate,
+        mode = 'lines+markers',
+        name = "Average",
+        type = "scatter"
       )
-      
-      vline <- list(
-        type = "line", 
-        y0 = 0, 
-        y1 = 1, 
-        yref = "paper",
-        x0 = mean_mortality, 
-        x1 = mean_mortality, 
-        line = list(color = "black")
-      )
-      
-      plot_ly(
-        x = df2$Crude.Rate,
-        y = df2$State,
-        marker = list(color = df2$colors),
-        orientation='h',
-        width = 900,
-        height = 750,
-        type = "bar"
-      ) %>% 
-        layout(shapes = vline,
-               xaxis = list(range=c(0,max_rate_q2())),
-               yaxis = list(tickfont = list(size = 11)),
-               annotations = a
-        )
+      selected_states <- state2_q2()
+      for (state in states)
+      {
+        alpha <- ifelse(state %in% selected_states,1,0.05)
+        temp <- filter(df3, State == state)
+        fig <- fig %>% add_trace(x = temp$Year, y = temp$Crude.Rate, name = state, mode = 'lines+markers',opacity = alpha) 
+      }
+      fig
     }
   })
 }
