@@ -5,7 +5,9 @@ account: ezaccountz
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4735962
-bundleId: 5074138
+bundleId: 5097828
 url: https://ezaccountz.shinyapps.io/module3/
-when: 1632683615.48059
-lastSyncTime: 1632683615.48059
+when: 1633202765.19318
+lastSyncTime: 1633202765.19318
+asMultiple: FALSE
+asStatic: FALSE
