@@ -62,7 +62,7 @@ server <- function(input, output, session) {
     }
     else {
       paste("<h4><center>The Mortality Rates for<b>",input$causes_q1,
-            "</b>in",input$year_q1," (scaled by 1/100000)</center></h4>", sep =" ")
+            "</b>in",input$year_q1,"<br>(scaled by multiplying 100000)</center></h4>", sep =" ")
     }
   })
 
@@ -98,7 +98,7 @@ server <- function(input, output, session) {
   
   output$message_q2 <- renderText({
     paste("<h4><center>The Mortality Rates for<b>",input$causes_q2,
-                   "</b> (scaled by 1/100000) </center></h4>", sep =" ")
+                   "</b><br>(scaled by multiplying 100000) </center></h4>", sep =" ")
     
     # df2 <- data_q2()
     # if (nrow(df2) == 0) {
