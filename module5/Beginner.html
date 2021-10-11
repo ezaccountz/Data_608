@@ -1,0 +1,87 @@
+<html>
+
+<head>
+	<title>Module 5 Beginner</title>
+	<style>
+        table {
+            border-collapse: collapse;
+            border: 2px black solid;
+            font: 12px sans-serif;
+        }
+
+        td {
+            border: 1px black solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<br><p>reverse a word</p>
+
+<script type="text/javascript">
+
+
+// Basic functions
+
+function reverse(text){
+	var reversed_text = "";
+	for (var i = text.length - 1; i >= 0; i--) { 
+		reversed_text += text[i];
+	}
+	return(reversed_text)
+}
+
+function calc1(){
+    var output1 = document.getElementById("reversed_output");
+    output1.innerHTML = reverse(document.getElementById('text_input_1').value);
+}
+
+function tableCreate(num){
+    
+    multi_table  = document.createElement('table');
+
+    for(var i = 0; i < 5; i++){
+        var tr = multi_table.insertRow();
+        for(var j = 0; j < 4; j++){
+			var td = tr.insertCell()
+			td.innerHTML = num*(j+1)+num*4*(i)
+        }
+    }
+    return(multi_table)
+}
+
+function appendTable(){
+	var output2 = document.getElementById("multiples_output");
+	output2.innerHTML = ""
+    output2.appendChild(tableCreate(document.getElementById('number_input_1').value));
+}
+
+
+
+</script>
+
+<form>
+    <input id="text_input_1" type="text">
+    <input type="button" value="Reverse!" onClick="calc1();">
+</form>
+
+
+<p>The reversed word is:</p>
+
+<div id="reversed_output"></div>
+
+<hr>
+
+<p>multiples of a number</p>
+
+<form>
+    <input id="number_input_1" type="number">
+    <input type="button" value="Calculate!" onClick="appendTable();">
+</form>
+
+<div id="multiples_output"></div>
+
+</body>
+</html>
