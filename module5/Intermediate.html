@@ -1,0 +1,97 @@
+<html>
+
+<head>
+	<title>Module 5 Intermediate</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<style>
+        table {
+            border-collapse: collapse;
+            border: 2px black solid;
+            font: 12px sans-serif;
+        }
+
+        td {
+            border: 1px black solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<script type="text/javascript">
+var df
+var lookup_height = []
+var lookup_weight = []
+d3.csv("https://raw.githubusercontent.com/ezaccountz/Data_608/main/module5/data/presidents.csv", function(data) {
+    df = data
+	for(var i = 0; i < data.length; i++){
+		lookup_height[data[i].Name] = data[i].Height
+		lookup_weight[data[i].Name] = data[i].Weight
+    }
+	
+	var data_table  = document.createElement('table');
+	var tr = data_table.insertRow()
+	var td = tr.insertCell()
+	td.innerHTML = 'Name'
+	td = tr.insertCell()
+	td.innerHTML = 'Height'
+	td = tr.insertCell()
+	td.innerHTML = 'Weight'
+	
+    for(var i = 0; i < data.length; i++){
+        tr = data_table.insertRow();
+		td = tr.insertCell()
+     	td.innerHTML = data[i].Name
+		td = tr.insertCell()
+		td.innerHTML = data[i].Height
+		td = tr.insertCell()
+		td.innerHTML = data[i].Weight
+    }
+	
+	var output1 = document.getElementById("table_output")
+	output1.appendChild(data_table)
+});
+</script>
+
+
+
+<script type="text/javascript">
+
+
+// Basic functions
+
+function getInfo(){
+	var present = document.getElementById('text_input_1').value
+	if (lookup_height[present] == undefined) {
+		document.getElementById("text_output").innerHTML = "President name is not found, please enter the correct name of a president"
+	}
+	else {
+		document.getElementById("text_output").innerHTML = "The height is " + lookup_height[present] + " and the weigth is " + lookup_weight[present]
+	}
+}
+
+
+</script>
+
+<p>presidents</p>
+
+<div id="table_output"></div>
+
+<hr>
+
+<p>Enter the name of a president</p>
+
+<form>
+    <input id="text_input_1" type="text">
+    <input type="button" value="Get Height and Weight" onClick="getInfo();">
+</form>
+
+<div id="text_output"></div>
+
+<hr>
+
+
+
+</body>
+</html>
