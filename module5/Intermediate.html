@@ -23,6 +23,9 @@
 var df
 var lookup_height = []
 var lookup_weight = []
+
+var headerNames
+
 d3.csv("https://raw.githubusercontent.com/ezaccountz/Data_608/main/module5/data/presidents.csv", function(data) {
     df = data
 	for(var i = 0; i < data.length; i++){
@@ -30,23 +33,23 @@ d3.csv("https://raw.githubusercontent.com/ezaccountz/Data_608/main/module5/data/
 		lookup_weight[data[i].Name] = data[i].Weight
     }
 	
+	var headerNames = d3.keys(data[0]);
+
 	var data_table  = document.createElement('table');
 	var tr = data_table.insertRow()
-	var td = tr.insertCell()
-	td.innerHTML = 'Name'
-	td = tr.insertCell()
-	td.innerHTML = 'Height'
-	td = tr.insertCell()
-	td.innerHTML = 'Weight'
+	var td
+	
+	for(var i = 0; i < headerNames.length; i++){
+		td = tr.insertCell()
+		td.innerHTML = headerNames[i]
+	}
 	
     for(var i = 0; i < data.length; i++){
         tr = data_table.insertRow();
-		td = tr.insertCell()
-     	td.innerHTML = data[i].Name
-		td = tr.insertCell()
-		td.innerHTML = data[i].Height
-		td = tr.insertCell()
-		td.innerHTML = data[i].Weight
+		for(var j = 0; j < headerNames.length; j++){
+			td = tr.insertCell()
+			td.innerHTML = data[i][headerNames[j]]
+		}
     }
 	
 	var output1 = document.getElementById("table_output")
