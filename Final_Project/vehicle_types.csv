@@ -1,12 +1,9 @@
-vehicle_types,
+original vehicle types,revised vehicle types
 0,Unspecified
 1,Unspecified
 11111,Unspecified
 11-VA,Van
-12 Pa,Van
 12 PA,Van
-15 pa,Van
-15 Pa,Van
 15 PA,Van
 18 WH,Truck
 18 WHEELER,Truck
@@ -16,34 +13,33 @@ vehicle_types,
 2000,Unspecified
 2015,Unspecified
 250-3,Unspecified
-26 ft,Unspecified
+26 FT,Unspecified
 2 DOO,Passenger Car
 2 DR,Passenger Car
-2 dr sedan,Passenger Car
-2- to,Unspecified
+2 DR SEDAN,Passenger Car
+2- TO,Unspecified
 2 TON,Unspecified
 2 WHE,Unspecified
-315 e,Unspecified
+315 E,Unspecified
 35 FT,Unspecified
 3DC-,Unspecified
-3 doo,Unspecified
-3-Door,Unspecified
+3 DOO,Unspecified
+3-DOOR,Unspecified
 3DOOR,Unspecified
-3-whe,Wheeler
-3 Whe,Wheeler
+3-WHE,Wheeler
 3 WHE,Wheeler
-4 axe,Unspecified
+4 AXE,Unspecified
 4D,Passenger Car
-4door,Passenger Car
+4DOOR,Passenger Car
 4DR,Passenger Car
-4 dr sedan,Passenger Car
+4 DR SEDAN,Passenger Car
 4DS,Passenger Car
-4dsd,Passenger Car
+4DSD,Passenger Car
 4 RUN,Passenger Car
 4SEDN,Passenger Car
-4whee,Wheeler
+4WHEE,Wheeler
 5,Unspecified
-50cc Scoot,Scooter
+50CC SCOOT,Scooter
 5X8 T,Unspecified
 7532433,Unspecified
 985,Unspecified
@@ -52,100 +48,69 @@ vehicle_types,
 99999,Unspecified
 A,Unspecified
 ABULA,Ambulance
-abulance,Ambulance
-acces,Unspecified
-Acces,Unspecified
+ABULANCE,Ambulance
 ACCES,Unspecified
 AERIA,Unspecified
-almbulance,Ambulance
+ALMBULANCE,Ambulance
 AMABU,Ambulance
-amb,Ambulance
-Amb,Ambulance
 AMB,Ambulance
-ambu,Ambulance
-Ambu,Ambulance
 AMBU,Ambulance
 AMBUKANCE,Ambulance
-ambul,Ambulance
-Ambul,Ambulance
-AMbul,Ambulance
 AMBUL,Ambulance
 AMBULACE,Ambulance
-ambulance,Ambulance
-Ambulance,Ambulance
 AMBULANCE,Ambulance
 AMBULANE,Ambulance
 AMBULENCE,Ambulance
-ambulette,Ambulette
-Ambulette,Ambulette
 AMBULETTE,Ambulette
-amdu,Unspecified
+AMDU,Unspecified
 AMUBULANCE,Ambulance
-amulance,Ambulance
+AMULANCE,Ambulance
 A-ONE,Unspecified
 APORT,Unspecified
 APP,Unspecified
 APPOR,Unspecified
 ARMOR,Armored Truck
-Armored Truck,Armored Truck
+ARMORED TRUCK,Armored Truck
 ARMY,Armored Truck
-Attac,Unspecified
-atv p,Unspecified
-back,Construction Vehicle
+ATTAC,Unspecified
+ATV P,Unspecified
 BACK,Construction Vehicle
-backh,Construction Vehicle
-Backh,Construction Vehicle
 BACKH,Construction Vehicle
-backhoe,Construction Vehicle
+BACKHOE,Construction Vehicle
 BACK HOE,Construction Vehicle
-Backhoe Lo,Construction Vehicle
-Barri,Passenger Car
+BACKHOE LO,Construction Vehicle
+BARRI,Passenger Car
 BED T,Truck
-Beverage Truck,Truck
-Bicyc,Bike
+BEVERAGE TRUCK,Truck
 BICYC,Bike
 BICYCLE,Bike
-Bike,Bike
+BIKE,Bike
 BK,Bike
 BKHOE,Construction Vehicle
 BLACK,Unspecified
 BLOCK,Unspecified
 BOAT,Construction Vehicle
-bobca,Construction Vehicle
 BOBCA,Construction Vehicle
-Bobcat,Construction Vehicle
 BOBCAT,Construction Vehicle
 BOBCAT FOR,Construction Vehicle
-bobct,Construction Vehicle
+BOBCT,Construction Vehicle
 BOOM,Construction Vehicle
-box,Truck
 BOX,Truck
 BOX H,Truck
-box t,Truck
-Box t,Truck
-Box T,Truck
 BOX T,Truck
-boxtr,Truck
-BoxTr,Truck
-box truck,Truck
-Box truck,Truck
-Box Truck,Truck
+BOXTR,Truck
 BOX TRUCK,Truck
 BROOM,Construction Vehicle
 BS,Unspecified
-bsd,Unspecified
+BSD,Unspecified
 BTM,Unspecified
 BUCKE,Construction Vehicle
-Bucketload,Construction Vehicle
-Bucket Tru,Construction Vehicle
-Budge,Truck
-Bulk Agriculture,Truck
-bulld,Construction Vehicle
+BUCKETLOAD,Construction Vehicle
+BUCKET TRU,Construction Vehicle
+BUDGE,Truck
+BULK AGRICULTURE,Truck
 BULLD,Construction Vehicle
 BULLDOZER,Construction Vehicle
-bus,Bus
-Bus,Bus
-BUs,Bus
 BUS,Bus
 C0MME,Commercial
 C1,Unspecified
@@ -155,36 +120,28 @@ C3,Unspecified
 CAB,Cabin
 CABIN,Cabin
 CAMP,Van
-camper tra,Van
+CAMPER TRA,Van
 CAMPER VAN,Van
-Can,Unspecified
-Car C,Van
-cargo,Van
-Cargo,Van
+CAN,Unspecified
+CAR C,Van
 CARGO,Van
-Cargo van,Van
-Cargo Van,Van
 CARGO VAN,Van
-carri,Truck
+CARRI,Truck
 CARRIER,Truck
-Carry All,Truck
+CARRY ALL,Truck
 CART,Utility Vehicle
 CASE,Unspecified
 CAT,Construction Vehicle
 CAT.,Construction Vehicle
-Cat 9,Construction Vehicle
+CAT 9,Construction Vehicle
 CATAPILLAR,Construction Vehicle
-cater,Construction Vehicle
 CATER,Construction Vehicle
 CATIP,Construction Vehicle
 CAT P,Construction Vehicle
-cemen,Truck
 CEMEN,Truck
-Cement tru,Truck
-Cement Tru,Truck
 CEMENT TRU,Truck
 CHART,Unspecified
-Chassis Cab,Truck
+CHASSIS CAB,Truck
 CHERR,Passenger Car
 CHERV,Passenger Car
 CHEV,Passenger Car
@@ -192,152 +149,106 @@ CHEVR,Passenger Car
 CHEVROLET,Passenger Car
 CHEVY,Passenger Car
 CHEVY EXPR,Passenger Car
-City,City Owned
 CITY,City Owned
 CITY OWNED,City Owned
-cm,Truck
+CM,Truck
 CMIX,Truck
 CMIXER,Truck
 CMS-T,Unspecified
 CO,Unspecified
 COACH,Bus
 COLL,Unspecified
-com,Commercial
-Com,Commercial
 COM,Commercial
 COMB,Commercial
 COMER,Commercial
-Comix,Unspecified
-comm,Commercial
-comm.,Commercial
-Comm,Commercial
+COMIX,Unspecified
 COMM,Commercial
-comme,Commercial
-Comme,Commercial
+COMM.,Commercial
 COMME,Commercial
-commercial,Commercial
-Commercial,Commercial
 COMMERCIAL,Commercial
-commerical,Commercial
+COMMERICAL,Commercial
 COMMM,Commercial
 COMMU,Commercial
 COM T,Commercial
 COM TRANS,Commercial
-com v,Commercial
-concr,Truck
+COM V,Commercial
 CONCR,Truck
-Concrete Mixer,Truck
+CONCRETE MIXER,Truck
 CON E,Truck
-con ed tru,Construction Vehicle
-const,Construction Vehicle
-Const,Construction Vehicle
+CON ED TRU,Construction Vehicle
 CONST,Construction Vehicle
-Constructi,Construction Vehicle
+CONSTRUCTI,Construction Vehicle
 CONT,Construction Vehicle
-conta,Construction Vehicle
-conti,Passenger Car
+CONTA,Construction Vehicle
+CONTI,Passenger Car
 CONTR,Construction Vehicle
 CONVE,Passenger Car
-Convertible,Passenger Car
+CONVERTIBLE,Passenger Car
 COUPE,Passenger Car
-couri,Van
 COURI,Van
-Courier,Van
 COURIER,Van
-crane,Construction Vehicle
-Crane,Construction Vehicle
 CRANE,Construction Vehicle
-cross,Passenger Car
+CROSS,Passenger Car
 CUSHM,Utility Vehicle
 D3,Unspecified
-dark color,Unspecified
+DARK COLOR,Unspecified
 DEIV,Van
-del,Van
-delie,Van
-deliv,Van
-Deliv,Van
+DEL,Van
+DELIE,Van
 DELIV,Van
-Delivery,Van
 DELIVERY,Van
 DELIVERY T,Van
-delivery v,Van
 DELIVERY V,Van
-delv,Van
-Delv,Van
 DELV,Van
 DELV BR,Van
 DELVI,Van
-delviery,Van
+DELVIERY,Van
 DEMA-,Unspecified
-Dent and S,City Owned
-depar,City Owned
+DENT AND S,City Owned
+DEPAR,City Owned
 DEPARTMENT,City Owned
 DEPT VAN #,City Owned
-dhl t,Truck
+DHL T,Truck
 DIESE,Unspecified
-dilevery t,Truck
-dirt,Bike
+DILEVERY T,Truck
 DIRT,Bike
-dirtb,Bike
 DIRTB,Bike
-Dirt Bike,Bike
 DIRT BIKE,Bike
-dodge,Passenger Car
-Dodge,Passenger Car
 DODGE,Passenger Car
 DODGE RAM,Passenger Car
 DOLLY,Unspecified
 DOT EQUIPM,City Owned
 DOT R,City Owned
 DOT T,City Owned
-dp,City Owned
+DP,City Owned
 DRILL RIG,Construction Vehicle
-dsny,City Owned
-dump,Truck
-Dump,Truck
+DSNY,City Owned
 DUMP,Truck
-dumps,Truck
-Dumps,Truck
 DUMPS,Truck
 DUMPSTER T,Truck
 DUMPT,Truck
-dump truck,Truck
-Dump truck,Truck
 DUMP TRUCK,Truck
 D/V WB,Unspecified
 E3,Utility Vehicle
-e-350,Unspecified
+E-350,Unspecified
 E450,Unspecified
-e amb,Unspecified
-EAMB,Unspecified
 E AMB,Unspecified
-east,Unspecified
+EAMB,Unspecified
+EAST,Unspecified
 E - B,Bike
-E- Bi,Bike
-e-bik,Bike
-E bik,Bike
-E-Bik,Bike
-E BIK,Bike
+E- BI,Bike
 E-BIK,Bike
-ebike,Bike
-Ebike,Bike
-E bike,Bike
-E-bike,Bike
-E-Bike,Bike
+E BIK,Bike
 EBIKE,Bike
+E BIKE,Bike
 E-BIKE,Bike
 EC3,Unspecified
-e com,Electric Unit
-ECOM,Electric Unit
 E COM,Electric Unit
-Econo,Electric Unit
+ECOM,Electric Unit
 ECONO,Electric Unit
 ELEC.,Electric Unit
-elect,Electric Unit
-Elect,Electric Unit
 ELECT,Electric Unit
 ELECTRIC B,Bike
-Electric S,Scooter
 ELECTRIC S,Scooter
 ELEC. UNIC,Electric Unit
 EMERGENCY,Emergency
@@ -346,656 +257,745 @@ EMRGN,Emergency
 EMS,Emergency
 E.M.S,Emergency
 EMS A,Ambulance
-EMS Ambula,Ambulance
-ems b,Emergency
-EMS bus,Emergency
-Ems t,Emergency
+EMS AMBULA,Ambulance
+EMS B,Emergency
+EMS BUS,Emergency
 EMS T,Emergency
 EMS/VAN,Emergency
-Enclosed Body - Nonremovable Enclosure,Truck
-Enclosed Body - Removable Enclosure,Truck
+ENCLOSED BODY - NONREMOVABLE ENCLOSURE,Truck
+ENCLOSED BODY - REMOVABLE ENCLOSURE,Truck
 ENGIN,Unspecified
 ENGINE SP0,Unspecified
 E ONE,Unspecified
 E REVEL SC,Unspecified
-escavator,Construction Vehicle
-e sco,Scooter
-E-Sco,Scooter
+ESCAVATOR,Construction Vehicle
 E SCO,Scooter
-E scooter,Scooter
-E-scooter,Scooter
-E-Scooter,Scooter
+E-SCO,Scooter
+E SCOOTER,Scooter
 E-SCOOTER,Scooter
 ESCOOTER S,Scooter
-e skate bo,Electric Unit
+E SKATE BO,Electric Unit
 E-SKATEBOA,Electric Unit
 ESU REP,Emergency
 ESU RESCUE,Emergency
 ESU T,Emergency
-e tow,Unspecified
+E TOW,Unspecified
 E-UNICYCLE,Electric Unit
-excav,Construction Vehicle
 EXCAV,Construction Vehicle
-Excavator,Construction Vehicle
 EXCAVATOR,Construction Vehicle
-f15,Pickup Truck
+F15,Pickup Truck
 F150XL PIC,Pickup Truck
-f-250,Pickup Truck
+F-250,Pickup Truck
 F550,Pickup Truck
 F650,Pickup Truck
-Farm,Unspecified
-Farm Vehicle,Unspecified
-Fd fi,City Owned
+FARM,Unspecified
+FARM VEHICLE,Unspecified
+FD FI,City Owned
 FD LADDER,Fire Truck
-fdny,City Owned
 FDNY,City Owned
 FDNY #226,City Owned
-fdny ambul,Ambulance
-Fdny ambul,Ambulance
-FDNY Ambul,Ambulance
 FDNY AMBUL,Ambulance
 FDNY CHIEF,City Owned
-fdny ems,Emergency
 FDNY EMS,Emergency
 FDNY EMS V,Emergency
 FDNY EMT,Emergency
-FDNY Engin,Fire Truck
 FDNY ENGIN,Fire Truck
-FDNY fire,Fire Truck
-FDNY Fire,Fire Truck
 FDNY FIRE,Fire Truck
-FDNY Firet,Fire Truck
 FDNY FIRET,Fire Truck
 FDNY LADDE,Fire Truck
-fdny truck,Fire Truck
-FDNY truck,Fire Truck
-FDNY Truck,Fire Truck
 FDNY TRUCK,Fire Truck
-fd tr,Fire Truck
-FD tr,Fire Truck
 FD TR,Fire Truck
 FED E,Van
-Feder,Van
-Fedex,Van
+FEDER,Van
 FEDEX,Van
-fedx,Van
+FEDX,Van
 FEIG,Truck
-fire,City Owned
-Fire,City Owned
 FIRE,City Owned
-Fire Engin,Fire Truck
 FIRE ENGIN,Fire Truck
 FIRER,City Owned
-firet,Fire Truck
-fIRET,Fire Truck
-Firet,Fire Truck
 FIRET,Fire Truck
-firetruck,Fire Truck
-fire truck,Fire Truck
-Firetruck,Fire Truck
-Fire truck,Fire Truck
-Fire Truck,Fire Truck
 FIRETRUCK,Fire Truck
 FIRE TRUCK,Fire Truck
 FIRET TRUC,Fire Truck
 FIRTRUCK,Fire Truck
-flat,Truck
-Flat,Truck
 FLAT,Truck
 FLAT-,Truck
 FLAT/,Truck
-flatb,Truck
-Flatb,Truck
 FLATB,Truck
-Flat Bed,Truck
+FLAT BED,Truck
 FLATBED,Truck
 FLAT  BED,Truck
 FLATBED FR,Truck
-Flatbed Pi,Truck
-Flat bed t,Truck
-Flat Rack,Truck
+FLATBED PI,Truck
+FLAT BED T,Truck
+FLAT RACK,Truck
 FLED,Unspecified
 FLEET,Unspecified
-food,Truck
-Food,Truck
 FOOD,Truck
-food truck,Truck
 FOOD TRUCK,Truck
-ford,Unspecified
-Ford,Unspecified
 FORD,Unspecified
-ford econo,Van
-Ford sprin,Passenger Car
+FORD ECONO,Van
 FORD SPRIN,Passenger Car
-ford van,Van
-Ford Van,Van
 FORD VAN,Van
-fork,Fork Lift
-Fork,Fork Lift
 FORK,Fork Lift
 FORK-,Fork Lift
-forkl,Fork Lift
-Forkl,Fork Lift
 FORKL,Fork Lift
-forklift,Fork Lift
-Forklift,Fork Lift
-Fork lift,Fork Lift
-Fork Lift,Fork Lift
 FORKLIFT,Fork Lift
 FORK LIFT,Fork Lift
-forlift,Fork Lift
+FORLIFT,Fork Lift
 FR`,Unspecified
 FRE,Unspecified
 FREE,Unspecified
-freig,Truck
 FREIG,Truck
 FREIG DELV,Truck
-Freight,Truck
+FREIGHT,Truck
 FREIGHT FL,Truck
 FREIGHTLIN,Truck
 FREIGHT TR,Truck
-frh,Truck
+FRH,Truck
 FRHT,Truck
 FRHT TRAIL,Truck
 FRIEG,Truck
-front,Truck
 FRONT,Truck
-Front-Load,Truck
+FRONT-LOAD,Truck
 FUEL,Unspecified
 FUSION,Passenger Car
 G1,Unspecified
 G1`,Unspecified
 G AMB,Unspecified
-garba,Truck
-Garba,Truck
 GARBA,Truck
-Garbage or Refuse,Truck
-Garbage tr,Truck
-Garbage Tr,Truck
+GARBAGE OR REFUSE,Truck
 GARBAGE TR,Truck
-gas mo ped,Unspecified
+GAS MO PED,Unspecified
 GAS POWERE,Unspecified
-gas scoote,Scooter
-Gas scoote,Scooter
 GAS SCOOTE,Scooter
-gator,Utility Vehicle
 GATOR,Utility Vehicle
-g com,Unspecified
-G com,Unspecified
 G COM,Unspecified
 GEICO,Passenger Car
 GEN  AMBUL,Ambulance
 GE/SC,Unspecified
-Glass Rack,Unspecified
+GLASS RACK,Unspecified
 GLBEN,Unspecified
-gokar,Utility Vehicle
-Go kart,Utility Vehicle
-golf,Utility Vehicle
-Golf,Utility Vehicle
+GOKAR,Utility Vehicle
+GO KART,Utility Vehicle
 GOLF,Utility Vehicle
 GOLF CAR,Utility Vehicle
-Golf Cart,Utility Vehicle
 GOLF CART,Utility Vehicle
 GOVER,City Owned
-government,City Owned
-Government,City Owned
+GOVERNMENT,City Owned
 GOVT.,City Owned
 GOV V,City Owned
 G PSD,Unspecified
-Grail,Unspecified
-Grain,Unspecified
+GRAIL,Unspecified
+GRAIN,Unspecified
 GRAY,Unspecified
 GREEN,Unspecified
 GRUMM,Post Office
-Grumman LL,Post Office
-g scl,Unspecified
-G Sem,Unspecified
-g spc,Unspecified
+GRUMMAN LL,Post Office
+G SCL,Unspecified
+G SEM,Unspecified
+G SPC,Unspecified
 G TOW,Unspecified
 H1,Unspecified
 H3,Unspecified
 HD,Unspecified
 HDC,Unspecified
-HD To,Unspecified
-Hearse,Unspecified
+HD TO,Unspecified
+HEARSE,Unspecified
 HEAVY,Unspecified
 HERTZ RAM,Passenger Car
-high,Unspecified
+HIGH,Unspecified
 HIGHL,Unspecified
-hi-lo,Unspecified
-hino,Truck
-Hino,Truck
+HI-LO,Unspecified
 HINO,Truck
 HI TA,Unspecified
-Hopper,Unspecified
-horse,Trailer
-Horse,Trailer
+HOPPER,Unspecified
 HORSE,Trailer
 HORSE CARR,Trailer
-Horse trai,Trailer
-Horse Trai,Trailer
+HORSE TRAI,Trailer
 HOSRE,Trailer
-house,Trailer
 HOUSE,Trailer
-hrse,Trailer
-Hrse,Trailer
 HRSE,Trailer
 HWH,Unspecified
 I1,Unspecified
-ice c,Van
-Ice C,Van
 ICE C,Van
-icecr,Van
-I-haul,Unspecified
-inter,Unspecified
-Inter,Unspecified
+ICECR,Van
+I-HAUL,Unspecified
 INTER,Unspecified
-Isuzu,Unspecified
+ISUZU,Unspecified
 J1,Unspecified
-jeep,Jeep
 JEEP,Jeep
-John,Utility Vehicle
+JOHN,Utility Vehicle
 JOHN DEERE,Utility Vehicle
-kenwo,Truck
 KENWO,Truck
-kick scoot,Scooter
+KICK SCOOT,Scooter
 KME/F,Unspecified
 KP160,Unspecified
 KUBOT,Utility Vehicle
 L1,Unspecified
-ladde,Truck
+LADDE,Truck
 LADDER 34,Truck
 LADDER CO,Truck
 LADDER TRU,Truck
-LARGE COM VEH(6 OR MORE TIRES),Unspecified
-Lawnmower,Utility Vehicle
-LCOM,Unspecified
-LCOMM,Unspecified
+LARGE COM VEH(6 OR MORE TIRES),Commercial
+LAWNMOWER,Utility Vehicle
+LCOM,Commercial
+LCOMM,Commercial
 LD,Unspecified
-Leased amb,Unspecified
+LEASED AMB,Unspecified
 LEFT,Unspecified
 LIBER,Unspecified
 LIEBH,Unspecified
-Lift Boom,Construction Vehicle
+LIFT BOOM,Construction Vehicle
 LIGHT,Unspecified
 LIGHT TRAI,Unspecified
-''lime mope,Unspecified
-limo,Limousine
+''LIME MOPE,Unspecified
 LIMO,Limousine
-limou,Limousine
 LIMOU,Limousine
 LIT DIRECT,Unspecified
 LIVER,Van
-Livery Bus,Bus
+LIVERY BUS,Bus
 LIVERY VEHICLE,Van
-Livestock Rack,Unspecified
-lmb,Unspecified
+LIVESTOCK RACK,Unspecified
 LMB,Unspecified
 LMTV,Unspecified
 LOADE,Construction Vehicle
-Log,Unspecified
+LOG,Unspecified
 LSA,Unspecified
 LTR,Unspecified
 LTRL,Unspecified
-Lunch Wagon,Van
-mack,Truck
-Mack,Truck
+LUNCH WAGON,Van
 MACK,Truck
 MACK TRUCK,Truck
 MAC T,Truck
-mail,Truck
-Mail,Truck
 MAIL,Truck
-mailtruck,Truck
-Mailtruck,Truck
+MAILTRUCK,Truck
 MAIL TRUCK,Truck
 MARK,Van
-marke,Van
-Marke,Van
+MARKE,Van
 MARKED VAN,Van
 MAXIM,Unspecified
 ???MBU,Unspecified
-mc,Unspecified
-mcy,Unspecified
+MC,Unspecified
+MCY,Unspecified
 MCY B,Unspecified
 ME/BE,Unspecified
-Mecha,Unspecified
+MECHA,Unspecified
 MECHANICAL,Unspecified
-Mercedes,Unspecified
-message si,Unspecified
-Mini,Unspecified
+MERCEDES,Unspecified
+MESSAGE SI,Unspecified
 MINI,Unspecified
-Minibike,Bike
+MINIBIKE,Bike
 MINI BUS,Bus
-Minicycle,Bike
-miniv,Van
+MINICYCLE,Bike
 MINIV,Van
-mini van,Van
-Mini Van,Van
-mobil,Unspecified
+MINI VAN,Van
 MOBIL,Unspecified
-Mo pa,Bike
-mopad,Bike
-Mopd,Bike
+MO PA,Bike
+MOPAD,Bike
 MOPD,Bike
 MO PE,Bike
-moped,Bike
-Moped,Bike
 MOPED,Bike
-moter,Bike
-motor,Bike
-Motor,Bike
+MOTER,Bike
 MOTOR,Bike
-Motorbike,Bike
-Motorcycle,Bike
+MOTORBIKE,Bike
 MOTORCYCLE,Bike
-Motor Home,Motor Home
 MOTOR HOME,Motor Home
-Motorized Home,Motor Home
+MOTORIZED HOME,Motor Home
 MOTOR SCOO,Scooter
-Motorscoot,Scooter
 MOTORSCOOT,Scooter
-Motorscooter,Scooter
+MOTORSCOOTER,Scooter
 MOTOR SKAT,Scooter
-movin,Truck
-Movin,Truck
 MOVIN,Truck
 MOVING TRU,Truck
 MOVING VAN,Van
-Mta,Bus
 MTA,Bus
-mta b,Bus
-mta B,Bus
-MTA b,Bus
 MTA B,Bus
-MTA bus,Bus
-MTA Bus,Bus
 MTA BUS,Bus
 MTA C,Unspecified
-MTA truck,Truck
+MTA TRUCK,Truck
 MTA U,Unspecified
 MTA V,Van
 MTR H,Unspecified
-mtr s,Unspecified
-Multi-Wheeled Vehicle,Unspecified
+MTR S,Unspecified
+MULTI-WHEELED VEHICLE,Unspecified
 MVP,Unspecified
-na,Unspecified
-n/a,Unspecified
 NA,Unspecified
 N/A,Unspecified
-nat grid t,Truck
+NAT GRID T,Truck
 NAVIG,Unspecified
 NEW Y,Unspecified
 NISSA,Passenger Car
 NIU,Unspecified
 NO/BU,Unspecified
-none,Unspecified
-NonMotordS,Unspecified
+NONE,Unspecified
+NONMOTORDS,Unspecified
 NOT I,Unspecified
 NS AM,Unspecified
 NT TR,Unspecified
 NTTRL,Unspecified
 NYC,City Owned
-NYC a,City Owned
+NYC A,City Owned
 NYC AMBULA,Ambulance
 NYC BUS,Bus
-nyc d,City Owned
 NYC D,City Owned
-nyc EMS,Emergency
+NYC EMS,Emergency
 NYC F,City Owned
 NYC FD,City Owned
 NYC FIRE T,City Owned
-nycha,City Owned
 NYCHA,City Owned
 NYC M,City Owned
 NYC SANITA,City Owned
-nycta,City Owned
-nyfd,City Owned
+NYCTA,City Owned
+NYFD,City Owned
 NYNJ RAIL,City Owned
-nypd,City Owned
-Nypd,City Owned
 NYPD,City Owned
 NYPD TOW T,City Owned
 NYPD VAN,City Owned
 NYS A,Ambulance
-NYS Ambula,Ambulance
 NYS AMBULA,Ambulance
-nyu s,Unspecified
-oil t,Truck
+NYU S,Unspecified
 OIL T,Truck
 OLC,Unspecified
-oml,Unspecified
 OML,Unspecified
 OML/OMNIBU,Bus
-omm,Unspecified
-?omme,Unspecified
-omni,Bus
-omnib,Bus
+OMM,Unspecified
+?OMME,Unspecified
+OMNI,Bus
 OMNIB,Bus
-omr,Unspecified
 OMR,Unspecified
 OMS,Unspecified
-omt,Unspecified
 OMT,Unspecified
 OMT/T,Unspecified
-Open Body,Unspecified
+OPEN BODY,Unspecified
 ORION,Unspecified
 OTH,Unspecified
-other,Unspecified
-Other,Unspecified
 OTHER,Unspecified
 OZ MO,Unspecified
-Pallet,Fork Lift
-Parce,Van
-pas,Passenger Car
-Pas,Passenger Car
+PALLET,Fork Lift
+PARCE,Van
 PAS,Passenger Car
-Pass,Passenger Car
 PASS,Passenger Car
 PASS-,Passenger Car
-passa,Passenger Car
-passe,Passenger Car
+PASSA,Passenger Car
 PASSE,Passenger Car
-passenger,Passenger Car
-Passenger,Passenger Car
 PASSENGER,Passenger Car
 PASSENGER VEHICLE,Passenger Car
 PAS V,Van
-Pavin,Construction Vehicle
-paylo,Construction Vehicle
+PAVIN,Construction Vehicle
 PAYLO,Construction Vehicle
-pay loader,Construction Vehicle
-pc,Pedicab
+PAY LOADER,Construction Vehicle
 PC,Pedicab
-pedic,Pedicab
 PEDIC,Pedicab
-pedicab,Pedicab
-Pedicab,Pedicab
 PEDICAB,Pedicab
-perm,Unspecified
 PERM,Unspecified
 PET,Unspecified
-pick,Pickup Truck
-Pick,Pickup Truck
-Pick-,Pickup Truck
+PICK,Pickup Truck
 PICK-,Pickup Truck
-picku,Pickup Truck
-Picku,Pickup Truck
 PICKU,Pickup Truck
-pickup,Pickup Truck
-pick up,Pickup Truck
-Pick up,Pickup Truck
 PICKUP,Pickup Truck
 PICK UP,Pickup Truck
-pick up tr,Pickup Truck
-Pick up tr,Pickup Truck
-Pick up Tr,Pickup Truck
 PICK UP TR,Pickup Truck
 PICK-UP TR,Pickup Truck
 PICKUP TRU,Pickup Truck
-Pick-up Truck,Pickup Truck
 PICK-UP TRUCK,Pickup Truck
-Pickup with mounted Camper,Pickup Truck
-Pick wh,Pickup Truck
-Piggy back,Truck
+PICKUP WITH MOUNTED CAMPER,Pickup Truck
+PICK WH,Pickup Truck
+PIGGY BACK,Truck
 PK,Pickup Truck
 PKUP,Pickup Truck
-plow,Construction Vehicle
 PLOW,Construction Vehicle
 POIS,Unspecified
 POLIC,Police
-police rep,Police
-posta,Post Office
-pOSTA,Post Office
-Posta,Post Office
+POLICE REP,Police
 POSTA,Post Office
-postal bus,Post Office
-postal ser,Post Office
-postal tru,Post Office
-Postal tru,Post Office
+POSTAL BUS,Post Office
+POSTAL SER,Post Office
 POSTAL TRU,Post Office
-postal van,Post Office
+POSTAL VAN,Post Office
 POSTAL VEH,Post Office
 POSTO,Post Office
-post offic,Post Office
-Post offic,Post Office
-power,Unspecified
-Power,Unspecified
+POST OFFIC,Post Office
 POWER,Unspecified
 POWER LADD,Unspecified
-Power Shov,Construction Vehicle
 POWER SHOV,Construction Vehicle
 PRIVA,Unspecified
-prks,Unspecified
-progr,Unspecified
-Pro master,Van
+PRKS,Unspecified
+PROGR,Unspecified
+PRO MASTER,Van
 PS,Unspecified
 PSD,Unspecified
 P/SE,Unspecified
-p/sh,Unspecified
-PSH,Unspecified
 P/SH,Unspecified
+PSH,Unspecified
 PSP,Unspecified
 PSR,Unspecified
 PU,Unspecified
 P/U,Unspecified
 PUMP,Fire Truck
 PUMPE,Fire Truck
-Pumper,Fire Truck
-push,Scooter
+PUMPER,Fire Truck
+PUSH,Scooter
 PUSH SCOOT,Scooter
-Quality tr,Unspecified
-ram,Pickup Truck
-Ram,Pickup Truck
-Ram Promas,Van
-range,Unspecified
-rd/s,Unspecified
+QUALITY TR,Unspecified
+RAM,Pickup Truck
+RAM PROMAS,Van
+RANGE,Unspecified
 RD/S,Unspecified
-red t,Unspecified
-refg,Truck
+RED T,Unspecified
 REFG,Truck
 REFR,Truck
-Refri,Truck
 REFRI,Truck
-Refrigerated Van,Van
-refuse tru,Truck
-renta,Unspecified
-Renta,Unspecified
+REFRIGERATED VAN,Van
+REFUSE TRU,Truck
 RENTA,Unspecified
-REP,
-REPAI,
-Rescu,
-RESCU,
-REVEL scoo,
-RGS,
-RINGO,
-rmb,
-rmp,
-RMP,
-RMP V,
-road,
-Road,
-ROAD,
-ROADS,
-road sweep,
-ROAD SWEEP,
-ROOD,
-RUBBE,
-rv,
-r/v,
-RV,
-R/V,
-R/V C,
-RV/Tr,
-RV/VAN,
-sanit,Sanitation
-Sanit,Sanitation
+REP,Unspecified
+REPAI,Unspecified
+RESCU,Fire Truck
+REVEL SCOO,Bike
+RGS,Unspecified
+RINGO,Unspecified
+RMB,Unspecified
+RMP,Unspecified
+RMP V,Unspecified
+ROAD,Sanitation
+ROADS,Sanitation
+ROAD SWEEP,Sanitation
+ROOD,Sanitation
+RUBBE,Unspecified
+RV,Van
+R/V,Van
+R/V C,Van
+RV/TR,Truck
+RV/VAN,Van
 SANIT,Sanitation
-sanitaion,Sanitation
-Sanitation,Sanitation
+SANITAION,Sanitation
 SANITATION,Sanitation
-sanitaton,Sanitation
-SANMEN COU,
-santa,Sanitation
+SANITATON,Sanitation
+SANMEN COU,Unspecified
+SANTA,Sanitation
 SANTI,Sanitation
 SC,School Bus
-schoo,School Bus
-Schoo,School Bus
 SCHOO,School Bus
 SCHOOL  BU,School Bus
-school bus,School Bus
-School bus,School Bus
-School Bus,School Bus
 SCHOOL BUS,School Bus
-SCL,
-SCOM,
-SCOMM,
-scoo,Scooter
+SCL,School Bus
+SCOM,Unspecified
+SCOMM,Unspecified
 SCOO,Scooter
-scooc,Scooter
-scoot,Scooter
-Scoot,Scooter
+SCOOC,Scooter
 SCOOT,Scooter
-scooter,Scooter
-Scooter,Scooter
 SCOOTER,Scooter
 SCOOTER GA,Scooter
-SD,
-SE,
-SEA,
-seagr,
-sedan,Passenger Car
-Sedan,Passenger Car
+SD,Unspecified
+SE,Unspecified
+SEA,Unspecified
+SEAGR,Unspecified
 SEDAN,Passenger Car
-SEDONA,
-SEGWA,
-self,Unspecified
-Self,Unspecified
+SEDONA,Passenger Car
+SEGWA,Scooter
 SELF,Unspecified
 SELF-,Unspecified
-self insur,Unspecified
 SELF INSUR,Unspecified
-semi,
-semi-,
-Semi,
-SEMI,
-SEMI-,
-semi-trail,
-SEMI TRAIL,
-SERVI,
-SFI,
-sgws,
-Shove,
-SHUTTLE BU,
-skate,
-SKATE,
-skateboard,
-SKATEBOARD,
-SKID-,
-SKID LOADE,
-Skywatch,
-SKYWATCH,
-SLINGSHOT,
-small,
-SMALL COM VEH(4 TIRES) ,
-Smart,
+SEMI,Truck
+SEMI-,Truck
+SEMI-TRAIL,Truck
+SEMI TRAIL,Truck
+SERVI,Unspecified
+SFI,Truck
+SGWS,Unspecified
+SHOVE,Construction Vehicle
+SHUTTLE BU,Bus
+SKATE,Skateboard
+SKATEBOARD,Skateboard
+SKID-,Construction Vehicle
+SKID LOADE,Construction Vehicle
+SKYWATCH,Construction Vehicle
+SLINGSHOT,Unspecified
+SMALL,Commercial
+SMALL COM VEH(4 TIRES) ,Commercial
+SMART,Passenger Car
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
