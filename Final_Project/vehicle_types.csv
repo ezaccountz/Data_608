@@ -22,7 +22,7 @@ original vehicle types,revised vehicle types
 2 WHE,Unspecified
 315 E,Unspecified
 35 FT,Unspecified
-3DC ,Unspecified
+3DC,Unspecified
 3 DOO,Unspecified
 3 DOOR,Unspecified
 3DOOR,Unspecified
@@ -203,11 +203,11 @@ DELV,Van
 DELV BR,Van
 DELVI,Van
 DELVIERY,Van
-DEMA ,Unspecified
+DEMA,Unspecified
 DENT AND S,City Owned
 DEPAR,City Owned
 DEPARTMENT,City Owned
-DEPT VAN ,City Owned
+DEPT VAN,City Owned
 DHL T,Truck
 DIESE,Unspecified
 DILEVERY T,Truck
@@ -245,7 +245,7 @@ E COM,Electric Unit
 ECOM,Electric Unit
 ECONO,Van
 ECONOLINE,Van
-ELEC ,Electric Unit
+ELEC,Electric Unit
 ELECT,Electric Unit
 ELECTRIC B,Bike
 ELECTRIC S,Scooter
@@ -338,7 +338,7 @@ FORKL,Fork Lift
 FORKLIFT,Fork Lift
 FORK LIFT,Fork Lift
 FORLIFT,Fork Lift
-FR ,Unspecified
+FR,Unspecified
 FRE,Unspecified
 FREE,Unspecified
 FREIG,Truck
@@ -379,7 +379,7 @@ GOLF CAR,Utility Vehicle
 GOLF CART,Utility Vehicle
 GOVER,City Owned
 GOVERNMENT,City Owned
-GOVT ,City Owned
+GOVT,City Owned
 GOV V,City Owned
 G PSD,Unspecified
 GRAIL,Unspecified
@@ -433,7 +433,7 @@ LADDE,Truck
 LADDER 34,Truck
 LADDER CO,Truck
 LADDER TRU,Truck
-LARGE COM VEH 6 OR MORE TIRES ,Commercial
+LARGE COM VEH 6 OR MORE TIRES,Commercial
 LAWNMOWER,Utility Vehicle
 LCOM,Commercial
 LCOMM,Commercial
@@ -555,8 +555,8 @@ OIL T,Truck
 OLC,Unspecified
 OML,Unspecified
 OML OMNIBU,Bus
- OMM,Unspecified
- OMME,Commercial
+OMM,Unspecified
+OMME,Commercial
 OMNI,Bus
 OMNIB,Bus
 OMR,Unspecified
@@ -702,12 +702,12 @@ SHOVE,Construction Vehicle
 SHUTTLE BU,Bus
 SKATE,Skateboard
 SKATEBOARD,Skateboard
-SKID ,Construction Vehicle
+SKID,Construction Vehicle
 SKID LOADE,Construction Vehicle
 SKYWATCH,Construction Vehicle
 SLINGSHOT,Unspecified
 SMALL,Commercial
-SMALL COM VEH 4 TIRES ,Commercial
+SMALL COM VEH 4 TIRES,Commercial
 SMART,Passenger Car
 SMART CAR,Passenger Car
 SMYELLSCHO,Unspecified
@@ -805,7 +805,7 @@ TRK,Unspecified
 TR KI,Unspecified
 TRL,Unspecified
 TRLR,Unspecified
-TRLR PLT ,Unspecified
+TRLR PLT,Unspecified
 TRT,Unspecified
 TR TR,Unspecified
 TR TRAILER,Truck
@@ -853,7 +853,7 @@ USPS 88716,Van
 USPS GOVT,Van
 USPS MAIL,Van
 USPS POSTA,Van
-USPS TRUC ,Truck
+USPS TRUC,Truck
 USPS TRUCK,Truck
 USPS VAN,Van
 UT,Utility Vehicle
