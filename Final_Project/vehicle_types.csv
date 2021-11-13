@@ -244,7 +244,7 @@ EC3,Unspecified
 E COM,Electric Unit
 ECOM,Electric Unit
 ECONO,Van
-ECONOLNE,Van
+ECONOLINE,Van
 ELEC ,Electric Unit
 ELECT,Electric Unit
 ELECTRIC B,Bike
@@ -353,6 +353,7 @@ FRHT TRAIL,Truck
 FRIEG,Truck
 FRONT,Truck
 FRONT LOAD,Truck
+FRT,Truck
 FUEL,Unspecified
 FUSION,Passenger Car
 G1,Unspecified
@@ -444,7 +445,7 @@ LIEBH,Unspecified
 LIFT BOOM,Construction Vehicle
 LIGHT,Unspecified
 LIGHT TRAI,Unspecified
- LIME MOPE,Unspecified
+LIME MOPE,Unspecified
 LIMO,Limousine
 LIMOU,Limousine
 LIT DIRECT,Unspecified
