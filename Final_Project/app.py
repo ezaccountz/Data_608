@@ -36,7 +36,7 @@ select_columns = ['date_extract_y(crash_date)%20as%20year','date_extract_m(crash
 
 limit = 999999
 dfs = dict()
-NewYorkCity   = (( -74.39,  -73.44), (40.51, 40.91))
+#NewYorkCity   = (( -74.39,  -73.44), (40.51, 40.91))
 
 
 factor_cov = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/factors.csv')  
@@ -84,6 +84,34 @@ vehicle_types = vehicle_types['vehicle_types'].to_list()
 vehicle_types = list(set(vehicle_types))
 vehicle_types = np.insert(vehicle_types,0,'All')
 
+# url = address + '?$select=min(latitude)'
+# url = url + "&$where=latitude>40"
+# url = url + "&$$app_token="+app_token
+# y0 = pd.read_json(url)
+# y0 = y0.iloc[0,0]
+# url = address + '?$select=max(latitude)'
+# url = url + "&$where=latitude<41"
+# url = url + "&$$app_token="+app_token
+# y1 = pd.read_json(url)
+# y1 = y1.iloc[0,0]
+# url = address + '?$select=min(longitude)'
+# url = url + "&$where=longitude>-75"
+# url = url + "&$$app_token="+app_token
+# x0 = pd.read_json(url)
+# x0 = x0.iloc[0,0]
+# url = address + '?$select=max(longitude)'
+# url = url + "&$where=longitude<-70"
+# url = url + "&$$app_token="+app_token
+# x1 = pd.read_json(url)
+# x1 = x1.iloc[0,0]
+
+# NewYorkCity   = (( x0,  x1), (y0, y1))
+#NewYorkCity   = (( -74.39,  -73.44), (40.51, 40.91))
+NewYorkCity   = (( -74.25909,  -73.700181), (40.477399, 40.916178))
+# collisions = getDF(2021)
+# map_fig = create_image(collisions,*NewYorkCity, zoom = 9)
+# map_fig.show()
+
 
 
 #-----------------------------------------------------------------------------
@@ -98,7 +126,8 @@ export = partial(export_image, background = background, export_path="export")
 cm = partial(colormap_select, reverse=(background!="black"))
 #plot width and height
 plot_width  = int(800)
-plot_height = int(plot_width*7.0/12)
+#plot_height = int(plot_width*7.0/12)
+plot_height = int(plot_width*0.421)
 
 
 def getDF(selected_year):
@@ -287,6 +316,8 @@ app.layout = html.Div([
                     value=years[0],
                     clearable=False,
                 ),
+         html.Div(id="info"),    #Delete###########################################
+         html.Div(id="info2"),    #Delete###########################################
     ],style=CONTENT_STYLE_1),
     html.Div([
         dcc.Dropdown(
@@ -378,6 +409,7 @@ app.layout = html.Div([
     Output('vehicle_types_plot', 'figure'),
     Output('factors_plot2', 'figure'),
     Output('vehicle_types_plot2', 'figure'),
+    Output("info", "children"), #delete####################################
     [Input('map_plot', 'relayoutData'),
      Input('map_plot2', 'relayoutData'),
      Input('years_dropdown', 'value'),
@@ -396,7 +428,7 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
     x1 = NewYorkCity[0][1]
     y0 = NewYorkCity[1][0]
     y1 = NewYorkCity[1][1]   
-    zoom = 10
+    zoom = 8.7
     
     if dashcc == 'map_plot2':
         if m2_relayoutData is not None and 'mapbox._derived' in m2_relayoutData: 
@@ -416,7 +448,7 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
     collisions = collisions[collisions['longitude'] >= x0]
     collisions = collisions[collisions['longitude'] <= x1]
     collisions = collisions[collisions['latitude'] >= y0]
-    collisions = collisions[collisions['latitude'] <= y1]
+    collisions = collisions[collisions['latitude'] <= y1]   
     
     collisions2 = collisions
     if factor != 'All':
@@ -496,22 +528,23 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
             'showticklabels': True, 
             'type': 'category'},
         margin=dict(t=0,b=0,l=0,r=0)
-    )          
+    )
     
     factor_df = collisions['factor'].value_counts()
     factor_df.sort_index(inplace = True)
     df = pd.DataFrame({'label':list(factor_df.index), 
                         'count':list(factor_df),
                         'percent':["{:.6%}".format(x) for x in factor_df/factor_df.sum()]})
-    # pull_selected = [0]*len(df)
-    # pull_selected[2] = 0.2
+    pull_selected = [0]*len(df)
+    if not factor == 'All':
+        pull_selected[df[df['label']==factor].index.values[0]] = 0.2    
     factor_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
                         title = "Crash Factors - All Data")
     factor_fig.update_traces(
                       text = df['percent'],
                       textinfo='text',
                       textposition='inside',
-                      #pull = pull_selected
+                      pull = pull_selected
                       )
     factor_fig.update_layout(showlegend=False, 
                              title_x=0.5,
@@ -523,15 +556,16 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
     df = pd.DataFrame({'label':list(vehicle_type_df.index), 
                         'count':list(vehicle_type_df),
                         'percent':["{:.6%}".format(x) for x in vehicle_type_df/vehicle_type_df.sum()]})
-    # pull_selected = [0]*len(df)
-    # pull_selected[2] = 0.2
+    pull_selected = [0]*len(df)
+    if not vehicle_type == 'All':
+        pull_selected[df[df['label']==vehicle_type].index.values[0]] = 0.2
     vehicle_type_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
                         title="Vehicle Types - All Data")
     vehicle_type_fig.update_traces(
                       text = df['percent'],
                       textinfo='text',
                       textposition='inside',
-                      #pull = pull_selected
+                      pull = pull_selected
                       )  
     vehicle_type_fig.update_layout(showlegend=False, 
                              title_x=0.5,
@@ -575,11 +609,44 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
                              margin=dict(t=0,b=0,l=20,r=20))
         
     
-    return map_fig, map_fig2, month_fig, hour_fig, factor_fig, vehicle_type_fig, factor_fig2, vehicle_type_fig2
+    return map_fig, map_fig2, month_fig, hour_fig, factor_fig, vehicle_type_fig, factor_fig2, vehicle_type_fig2, collisions.shape[0]
   
 #-----------------------------------------------------------------------------
 
+@app.callback(
+    Output('factors_dropdown', 'value'),
+    [
+     Input('factors_plot', 'clickData'),
+     State('factors_dropdown', 'value'),
+    ],
+)
+def update_pie_chart(clickData, dropdown_value):
+    if clickData is not None:    
+        clicked = clickData['points'][0]['label']
+        if clicked == dropdown_value:
+            clicked = 'All'
+    else:
+        clicked = dropdown_value   
+    if not clicked in factors:
+        clicked = dropdown_value     
+    return clicked
 
-
+@app.callback(
+    Output('vehicle_types_dropdown', 'value'),
+    [
+     Input('vehicle_types_plot', 'clickData'),
+     State('vehicle_types_dropdown', 'value'),
+    ],
+)
+def update_pie_chart(clickData, dropdown_value):
+    if clickData is not None:    
+        clicked = clickData['points'][0]['label']
+        if clicked == dropdown_value:
+            clicked = 'All'
+    else:
+        clicked = dropdown_value   
+    if not clicked in vehicle_types:
+        clicked = dropdown_value     
+    return clicked
 
 app.run_server(debug=True)
