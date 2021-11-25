@@ -67,7 +67,7 @@ factors = pd.read_json(url)
 factors.replace(factor_cov, inplace = True)
 factors = factors['factors'].dropna().to_list()
 factors = list(set(factors))
-factors = np.insert(factors,0,'All')
+#factors = np.insert(factors,0,'All')
 
 
 
@@ -82,7 +82,7 @@ vehicle_types['vehicle_types'] = vehicle_types['vehicle_types'].str.strip()
 vehicle_types.replace(vehicle_type_cov, inplace = True)
 vehicle_types = vehicle_types['vehicle_types'].to_list()
 vehicle_types = list(set(vehicle_types))
-vehicle_types = np.insert(vehicle_types,0,'All')
+#vehicle_types = np.insert(vehicle_types,0,'All')
 
 # url = address + '?$select=min(latitude)'
 # url = url + "&$where=latitude>40"
@@ -111,7 +111,6 @@ NewYorkCity   = (( -74.25909,  -73.700181), (40.477399, 40.916178))
 # collisions = getDF(2021)
 # map_fig = create_image(collisions,*NewYorkCity, zoom = 9)
 # map_fig.show()
-
 
 
 #-----------------------------------------------------------------------------
@@ -199,7 +198,7 @@ def create_image(df, longitude_range, latitude_range, w=plot_width, h=plot_heigh
     return geo_fig
 
 
-getDF(2021)
+getDF(years[0])
 
 
 
@@ -323,14 +322,18 @@ app.layout = html.Div([
         dcc.Dropdown(
                         id="factors_dropdown",
                         options=[{"label": x, "value": x} for x in factors],
-                        value=factors[0],
-                        clearable=False,
+                        multi=True,
+                        placeholder="All factors",
+                        #value=factors[0],
+                        #clearable=False,
                     ),
         dcc.Dropdown(
                         id="vehicle_types_dropdown",
                         options=[{"label": x, "value": x} for x in vehicle_types],
-                        value=vehicle_types[0],
-                        clearable=False,
+                        multi=True,
+                        placeholder="All vehicle types",
+                        #value=vehicle_types[0],
+                        #clearable=False,
                     ),
     ],style=CONTENT_STYLE_1),
     html.Div([
@@ -417,7 +420,7 @@ app.layout = html.Div([
      Input('vehicle_types_dropdown', 'value'),
     ],
 )
-def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle_type):
+def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicle_types):
     
     dashcc = dash.callback_context
     dashcc = dashcc.triggered[0]['prop_id'].split('.')[0]
@@ -451,11 +454,11 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
     collisions = collisions[collisions['latitude'] <= y1]   
     
     collisions2 = collisions
-    if factor != 'All':
-       collisions2 =collisions2[collisions['factor'] == factor]     
-    if vehicle_type != 'All':
-       collisions2 =collisions2[collisions['vehicle_type'] == vehicle_type] 
-    
+    if factors is not None and len(factors) != 0:
+       collisions2 =collisions2[collisions2['factor'].isin(factors)]  
+    if vehicle_types is not None and len(vehicle_types) != 0:
+       collisions2 =collisions2[collisions2['vehicle_type'].isin(vehicle_types)]    
+     
     map_fig = create_image(collisions,(x0,x1),(y0,y1), zoom = zoom)
     
     # month_df = collisions['month'].value_counts()
@@ -535,9 +538,12 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
     df = pd.DataFrame({'label':list(factor_df.index), 
                         'count':list(factor_df),
                         'percent':["{:.6%}".format(x) for x in factor_df/factor_df.sum()]})
-    pull_selected = [0]*len(df)
-    if not factor == 'All':
-        pull_selected[df[df['label']==factor].index.values[0]] = 0.2    
+    pull_selected = [0]*len(df) 
+    if factors is not None and len(factors) != 0:
+        for index in df[df['label'].isin(factors)].index.values:
+            pull_selected[index] = 0.2
+    # if not vehicle_type == 'All':
+    #    pull_selected[df[df['label']==factor].index.values[0]] = 0.2    
     factor_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
                         title = "Crash Factors - All Data")
     factor_fig.update_traces(
@@ -557,8 +563,11 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
                         'count':list(vehicle_type_df),
                         'percent':["{:.6%}".format(x) for x in vehicle_type_df/vehicle_type_df.sum()]})
     pull_selected = [0]*len(df)
-    if not vehicle_type == 'All':
-        pull_selected[df[df['label']==vehicle_type].index.values[0]] = 0.2
+    if vehicle_types is not None and len(vehicle_types) != 0:
+        for index in df[df['label'].isin(vehicle_types)].index.values:
+            pull_selected[index] = 0.2
+    # if not vehicle_type == 'All':
+    #     pull_selected[df[df['label']==vehicle_type].index.values[0]] = 0.2
     vehicle_type_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
                         title="Vehicle Types - All Data")
     vehicle_type_fig.update_traces(
@@ -620,16 +629,18 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factor, vehicle
      State('factors_dropdown', 'value'),
     ],
 )
-def update_pie_chart(clickData, dropdown_value):
+def update_pie_chart(clickData, dropdown_value):  
+    if dropdown_value is not None: 
+        current_value = dropdown_value
+    else:
+        current_value = []
     if clickData is not None:    
         clicked = clickData['points'][0]['label']
-        if clicked == dropdown_value:
-            clicked = 'All'
-    else:
-        clicked = dropdown_value   
-    if not clicked in factors:
-        clicked = dropdown_value     
-    return clicked
+        if clicked in current_value:
+            current_value.remove(clicked)
+        else:
+            current_value.append(clicked)    
+    return current_value
 
 @app.callback(
     Output('vehicle_types_dropdown', 'value'),
@@ -639,14 +650,16 @@ def update_pie_chart(clickData, dropdown_value):
     ],
 )
 def update_pie_chart(clickData, dropdown_value):
+    if dropdown_value is not None: 
+        current_value = dropdown_value
+    else:
+        current_value = []
     if clickData is not None:    
         clicked = clickData['points'][0]['label']
-        if clicked == dropdown_value:
-            clicked = 'All'
-    else:
-        clicked = dropdown_value   
-    if not clicked in vehicle_types:
-        clicked = dropdown_value     
-    return clicked
+        if clicked in current_value:
+            current_value.remove(clicked)
+        else:
+            current_value.append(clicked)    
+    return current_value
 
 app.run_server(debug=True)
