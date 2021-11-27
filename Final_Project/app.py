@@ -14,12 +14,13 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 
 
-import datashader as ds, datashader.transfer_functions as tf, numpy as np
+import datashader as ds, datashader.transfer_functions as tf
+#import numpy as np
 #from datashader import spatial
-from datashader.utils import lnglat_to_meters as webm
+#from datashader.utils import lnglat_to_meters as webm
 from functools import partial
 from datashader.utils import export_image
-from datashader.colors import colormap_select, Greys9
+from datashader.colors import colormap_select#, Greys9
 from colorcet import fire
 import pandas as pd
 import math
@@ -28,23 +29,15 @@ import re
 
 app_token = 'HcYUIkQM18kU32TiVXYsAKVjy'
 address = 'https://data.cityofnewyork.us/resource/h9gi-nx95.json'
-# select_columns = ['crash_date','date_extract_y(crash_date)%20as%20year','borough','latitude','longitude',
-#                   'contributing_factor_vehicle_1','vehicle_type_code1']
 select_columns = ['date_extract_y(crash_date)%20as%20year','date_extract_m(crash_date)%20as%20month',
                   'crash_time','latitude','longitude',
                   'contributing_factor_vehicle_1%20as%20factor','vehicle_type_code1%20as%20vehicle_type']
 
 limit = 999999
 dfs = dict()
-#NewYorkCity   = (( -74.39,  -73.44), (40.51, 40.91))
-
 
 factor_cov = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/factors.csv')  
 factor_cov = dict(zip(factor_cov['original factors'], factor_cov['revised factors']))
-
-#vehicle_type_cov = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/vehicle_types.csv', keep_default_na=False)  
-#vehicle_type_cov = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/vehicle_types.txt', 
-#                               delimiter = '\t', keep_default_na=False)  
 
 vehicle_type_cov = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/vehicle_types.csv', keep_default_na=False)
 vehicle_type_cov = dict(zip(vehicle_type_cov['original vehicle types'], vehicle_type_cov['revised vehicle types']))
@@ -68,8 +61,11 @@ factors.replace(factor_cov, inplace = True)
 factors = factors['factors'].dropna().to_list()
 factors = list(set(factors))
 #factors = np.insert(factors,0,'All')
-
-
+factor_list = dict()
+for factor in factors:
+    factor_list[factor] = []
+for key, item in factor_cov.items():
+    factor_list[item].append(key)
 
 url = address + '?$select=distinct(vehicle_type_code1)%20as%20vehicle_types'
 url = url + "&$limit="+str(limit)
@@ -84,34 +80,9 @@ vehicle_types = vehicle_types['vehicle_types'].to_list()
 vehicle_types = list(set(vehicle_types))
 #vehicle_types = np.insert(vehicle_types,0,'All')
 
-# url = address + '?$select=min(latitude)'
-# url = url + "&$where=latitude>40"
-# url = url + "&$$app_token="+app_token
-# y0 = pd.read_json(url)
-# y0 = y0.iloc[0,0]
-# url = address + '?$select=max(latitude)'
-# url = url + "&$where=latitude<41"
-# url = url + "&$$app_token="+app_token
-# y1 = pd.read_json(url)
-# y1 = y1.iloc[0,0]
-# url = address + '?$select=min(longitude)'
-# url = url + "&$where=longitude>-75"
-# url = url + "&$$app_token="+app_token
-# x0 = pd.read_json(url)
-# x0 = x0.iloc[0,0]
-# url = address + '?$select=max(longitude)'
-# url = url + "&$where=longitude<-70"
-# url = url + "&$$app_token="+app_token
-# x1 = pd.read_json(url)
-# x1 = x1.iloc[0,0]
 
-# NewYorkCity   = (( x0,  x1), (y0, y1))
-#NewYorkCity   = (( -74.39,  -73.44), (40.51, 40.91))
-NewYorkCity   = (( -74.25909,  -73.700181), (40.477399, 40.916178))
-# collisions = getDF(2021)
-# map_fig = create_image(collisions,*NewYorkCity, zoom = 9)
-# map_fig.show()
-
+#NewYorkCity   = (( -74.25909,  -73.700181), (40.477399, 40.916178))
+NewYorkCity   = (( -74.25909,  -73.700181), (40.487399, 40.926178))
 
 #-----------------------------------------------------------------------------
 
@@ -201,106 +172,40 @@ def create_image(df, longitude_range, latitude_range, w=plot_width, h=plot_heigh
 getDF(years[0])
 
 
-
-CONTENT_STYLE_1 = {
+CONTENT_STYLE_50 = {
     "display": "inline-block",
     "width": "48vw"
 }
 
-CONTENT_STYLE_2 = {
+CONTENT_STYLE_33 = {
     "display": "inline-block",
     "width": "32vw"
 }
 
-CONTENT_STYLE_3 = {
+CONTENT_STYLE_66 = {
     "display": "inline-block",
     "width": "65vw"
 }
 
-CONTENT_STYLE_4 = {
+CONTENT_STYLE_25 = {
     "display": "inline-block",
     "width": "24vw"
 }
 
+CONTENT_STYLE_75 = {
+    "display": "inline-block",
+    "width": "73vw"
+}
 
-# collisions = getDF(2021)
-# collisions2 = collisions[collisions['vehicle_type'] == 'Van'] 
-# hour_df = collisions['hour'].value_counts()
-# hour_df.sort_index(inplace = True)
-# hour_df2 = collisions2['hour'].value_counts()
-# hour_df2.sort_index(inplace = True)
-# for i in hour_df.index:
-#     if i in hour_df2.index:
-#         hour_df[i] = hour_df[i] - hour_df2[i]
+CONTENT_STYLE_10 = {
+    "display": "inline-block",
+    "width": "9vw"
+}
 
-
-# hour_df = pd.DataFrame({'hour':list(hour_df.index), 
-#                         'count':list(hour_df),
-#                         'filtering':'unselected'})
-# hour_df2 = pd.DataFrame({'hour':list(hour_df2.index), 
-#                         'count':list(hour_df2),
-#                         'filtering':'selected'})
-# df = hour_df2.append(hour_df).reset_index(drop = True)
-
-# fig = px.bar(df, x="hour", y="count", color="filtering",
-#               color_discrete_map={
-#                 'unselected': '#636EFA',
-#                 'selected': '#EF553B'
-#             })
-# fig.show()
-
-# hour_fig = px.bar(hour_df)   
-# hour_fig.update_layout(
-#     xaxis={#'tickangle': 35, 
-#         'showticklabels': True, 
-#         'type': 'category'}
-# )    
-
-# dfs = dict()
-# collisions = getDF(2021)
-# collisions['vehicle_type']
-
-# temp = collisions['vehicle_type'].value_counts()
-# temp.sort_index(inplace = True)
-# df = pd.DataFrame({'label':list(temp.index), 
-#                     'count':list(temp),
-#                     'percent':["{:.6%}".format(x) for x in temp/temp.sum()]})
-
-
-# # pull_selected = [0]*len(df)
-# # pull_selected[2] = 0.2
-
-# fig = px.pie(df, values='count', names='label',hover_data=['percent'])
-# fig.update_traces(
-#                   text = df['percent'],
-#                   textinfo='text',
-#                   textposition='inside',
-#                   #pull = pull_selected
-#                   )
-# fig.update_layout(
-#     legend=dict(
-#         font=dict(
-#             size=9,
-#         ),
-#     )
-# )
-# fig.show()
-
-
-# temp = collisions['factor'].value_counts()
-# temp.sort_index(inplace = True)
-# fig = px.bar(temp)   
-# fig.update_layout(
-#     xaxis={#'tickangle': 35, 
-#             'showticklabels': True, 
-#             'type': 'category'}
-# )
-
-
-
-# import plotly.io as pio
-# pio.renderers.default='browser'
-
+CONTENT_STYLE_90 = {
+    "display": "inline-block",
+    "width": "88vw"
+}
 
 
 #--------------------------------------------------------------
@@ -309,97 +214,73 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div([
     html.Div([
-         dcc.Dropdown(
-                    id="years_dropdown",
-                    options=[{"label": x, "value": x} for x in years],
-                    value=years[0],
-                    clearable=False,
-                ),
-         html.Div(id="info"),    #Delete###########################################
-         html.Div(id="info2"),    #Delete###########################################
-    ],style=CONTENT_STYLE_1),
+         html.Label(children = "Year: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "4vw"}),   
+         html.Div([
+             dcc.Dropdown(
+                        id="years_dropdown",
+                        options=[{"label": x, "value": x} for x in years],
+                        value=years[0],
+                        clearable=False,
+             ),             
+         ],style = {"display": "inline-block", "width": "4vw"}),
+
+    ],style=CONTENT_STYLE_10),
     html.Div([
-        dcc.Dropdown(
+        html.Label(children = "Factor: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "8vw"}),
+        html.Div([
+             dcc.Dropdown(
                         id="factors_dropdown",
                         options=[{"label": x, "value": x} for x in factors],
                         multi=True,
                         placeholder="All factors",
                         #value=factors[0],
                         #clearable=False,
-                    ),
-        dcc.Dropdown(
+            ),             
+        ],style = {"display": "inline-block", "width": "79vw"}),
+        #html.Br,
+        html.Label(children = "Vehicle Type: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "8vw"}),
+        html.Div([
+             dcc.Dropdown(
                         id="vehicle_types_dropdown",
                         options=[{"label": x, "value": x} for x in vehicle_types],
                         multi=True,
                         placeholder="All vehicle types",
                         #value=vehicle_types[0],
                         #clearable=False,
-                    ),
-    ],style=CONTENT_STYLE_1),
+            ),         
+        ],style = {"display": "inline-block", "width": "79vw"}),
+    ],style=CONTENT_STYLE_90),
+    
+     
+    
     html.Div([
          dcc.Graph(id="months_plot"),
-    ],style=CONTENT_STYLE_2),
+    ],style=CONTENT_STYLE_33),
     html.Div([
          dcc.Graph(id="hours_plot"),
-    ],style=CONTENT_STYLE_3),
+    ],style=CONTENT_STYLE_66),  
+    html.H3(id="total_all",style={'font-weight': 'bold',"text-align": "center","display": "inline-block","width": "48vw"}),    
+    html.H3(id="total_filtered",style = {'font-weight': 'bold',"text-align": "center","display": "inline-block","width": "48vw"}),          
     html.Div([
          dcc.Graph(id="map_plot"),
-    ],style=CONTENT_STYLE_1),
+    ],style=CONTENT_STYLE_50),
     html.Div([
          dcc.Graph(id="map_plot2"),
-    ],style=CONTENT_STYLE_1),
+    ],style=CONTENT_STYLE_50),
     html.Div([
          dcc.Graph(id="factors_plot"),
-    ],style=CONTENT_STYLE_4),
+    ],style=CONTENT_STYLE_25),
     html.Div([
          dcc.Graph(id="vehicle_types_plot"),
-    ],style=CONTENT_STYLE_4),
+    ],style=CONTENT_STYLE_25),
     html.Div([
          dcc.Graph(id="factors_plot2"),
-    ],style=CONTENT_STYLE_4),
+    ],style=CONTENT_STYLE_25),
     html.Div([
          dcc.Graph(id="vehicle_types_plot2"),
-    ],style=CONTENT_STYLE_4),
+    ],style=CONTENT_STYLE_25),
     
-    # dcc.Dropdown(
-    #                 id="years_dropdown",
-    #                 options=[{"label": x, "value": x} for x in years],
-    #                 value=years[0],
-    #                 clearable=False,
-    #             ),
-    # dcc.Dropdown(
-    #                 id="months_dropdown",
-    #                 options=[{"label": x, "value": x} for x in months],
-    #                 value=months[0],
-    #                 clearable=False,
-    #             ),
-    # dcc.Dropdown(
-    #                 id="hours_dropdown",
-    #                 options=[{"label": x, "value": x} for x in hours],
-    #                 value=hours[0],
-    #                 clearable=False,
-    #             ),
-    # dcc.Dropdown(
-    #                 id="factors_dropdown",
-    #                 options=[{"label": x, "value": x} for x in factors],
-    #                 value=factors[0],
-    #                 clearable=False,
-    #             ),
-    # dcc.Dropdown(
-    #                 id="vehicle_types_dropdown",
-    #                 options=[{"label": x, "value": x} for x in vehicle_types],
-    #                 value=vehicle_types[0],
-    #                 clearable=False,
-    #             ),
-    #html.Div(id='container'), # To Delete
-    # dcc.Graph(id="map_plot"),
-    # dcc.Graph(id="map_plot2"),
-    # dcc.Graph(id="months_plot"),
-    # dcc.Graph(id="hours_plot"),
-    # dcc.Graph(id="factors_plot"),
-    # dcc.Graph(id="vehicle_types_plot"),
-    # dcc.Graph(id="factors_plot2"),
-    # dcc.Graph(id="vehicle_types_plot2"),
+ 
 ])
 
  
@@ -412,7 +293,8 @@ app.layout = html.Div([
     Output('vehicle_types_plot', 'figure'),
     Output('factors_plot2', 'figure'),
     Output('vehicle_types_plot2', 'figure'),
-    Output("info", "children"), #delete####################################
+    Output("total_all", "children"), 
+    Output("total_filtered", "children"), 
     [Input('map_plot', 'relayoutData'),
      Input('map_plot2', 'relayoutData'),
      Input('years_dropdown', 'value'),
@@ -461,14 +343,7 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
      
     map_fig = create_image(collisions,(x0,x1),(y0,y1), zoom = zoom)
     
-    # month_df = collisions['month'].value_counts()
-    # month_df.sort_index(inplace = True)
-    # month_fig = px.bar(month_df)   
-    # month_fig.update_layout(
-    #     xaxis={#'tickangle': 35, 
-    #         'showticklabels': True, 
-    #         'type': 'category'}
-    # )
+
     month_df = collisions['month'].value_counts()
     month_df.sort_index(inplace = True)
     month_df2 = collisions2['month'].value_counts()
@@ -497,14 +372,7 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
         margin=dict(t=0,b=0,l=0,r=0)
     )        
       
-    # hour_df = collisions['hour'].value_counts()
-    # hour_df.sort_index(inplace = True)
-    # hour_fig = px.bar(hour_df)   
-    # hour_fig.update_layout(
-    #     xaxis={#'tickangle': 35, 
-    #         'showticklabels': True, 
-    #         'type': 'category'}
-    # )
+
     hour_df = collisions['hour'].value_counts()
     hour_df.sort_index(inplace = True)
     hour_df2 = collisions2['hour'].value_counts()
@@ -537,19 +405,24 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
     factor_df.sort_index(inplace = True)
     df = pd.DataFrame({'label':list(factor_df.index), 
                         'count':list(factor_df),
-                        'percent':["{:.6%}".format(x) for x in factor_df/factor_df.sum()]})
+                        'percent':["{:.6%}".format(x) for x in factor_df/factor_df.sum()],
+                        'info':""},) 
+    for i in range(len(df)):
+        df['info'][i] = "<br>    " + "<br>    ".join(factor_list[df.iloc[i]['label']])
     pull_selected = [0]*len(df) 
     if factors is not None and len(factors) != 0:
         for index in df[df['label'].isin(factors)].index.values:
             pull_selected[index] = 0.2
     # if not vehicle_type == 'All':
     #    pull_selected[df[df['label']==factor].index.values[0]] = 0.2    
-    factor_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
+    factor_fig = px.pie(df, values='count', names='label',#hover_data=['percent'],
+                        hover_data=['label','count','percent','info'], 
                         title = "Crash Factors - All Data")
     factor_fig.update_traces(
-                      text = df['percent'],
-                      textinfo='text',
+                      text = df['label'],
+                      textinfo='text+percent',
                       textposition='inside',
+                      hovertemplate='Factor: %{customdata[0][0]}<br>Count: %{customdata[0][1]}<br>Percent: %{customdata[0][2]}<br>Sub Factors: %{customdata[0][3]}',
                       pull = pull_selected
                       )
     factor_fig.update_layout(showlegend=False, 
@@ -568,12 +441,14 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
             pull_selected[index] = 0.2
     # if not vehicle_type == 'All':
     #     pull_selected[df[df['label']==vehicle_type].index.values[0]] = 0.2
-    vehicle_type_fig = px.pie(df, values='count', names='label',hover_data=['percent'],
-                        title="Vehicle Types - All Data")
+    vehicle_type_fig = px.pie(df, values='count', names='label',#hover_data=['percent'],
+                              hover_data=['label','count','percent'],
+                              title="Vehicle Types - All Data")
     vehicle_type_fig.update_traces(
-                      text = df['percent'],
-                      textinfo='text',
+                      text = df['label'],
+                      textinfo='text+percent',
                       textposition='inside',
+                      hovertemplate='Vehicle Type: %{customdata[0][0]}<br>Count: %{customdata[0][1]}<br>Percent: %{customdata[0][2]}',
                       pull = pull_selected
                       )  
     vehicle_type_fig.update_layout(showlegend=False, 
@@ -587,13 +462,18 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
     factor_df2.sort_index(inplace = True)
     df = pd.DataFrame({'label':list(factor_df2.index), 
                         'count':list(factor_df2),
-                        'percent':["{:.6%}".format(x) for x in factor_df2/factor_df2.sum()]})
-    factor_fig2 = px.pie(df, values='count', names='label',hover_data=['percent'],
-                        title="Crash Factors - Filtered Data")
+                        'percent':["{:.6%}".format(x) for x in factor_df2/factor_df2.sum()],
+                        'info':""},) 
+    for i in range(len(df)):
+        df['info'][i] = "<br>    " + "<br>    ".join(factor_list[df.iloc[i]['label']])
+    factor_fig2 = px.pie(df, values='count', names='label', #hover_data=['percent'],
+                         hover_data=['label','count','percent','info'],
+                         title="Crash Factors - Selected Data")
     factor_fig2.update_traces(
-                      text = df['percent'],
-                      textinfo='text',
+                      text = df['label'],
+                      textinfo='text+percent',
                       textposition='inside',
+                      hovertemplate='Factor: %{customdata[0][0]}<br>Count: %{customdata[0][1]}<br>Percent: %{customdata[0][2]}<br>Sub Factors: %{customdata[0][3]}',
     )
     factor_fig2.update_layout(showlegend=False, 
                              title_x=0.5,
@@ -605,20 +485,25 @@ def update_scatter_chart(m1_relayoutData, m2_relayoutData, year, factors, vehicl
     df = pd.DataFrame({'label':list(vehicle_type_df2.index), 
                         'count':list(vehicle_type_df2),
                         'percent':["{:.6%}".format(x) for x in vehicle_type_df2/vehicle_type_df2.sum()]})
-    vehicle_type_fig2 = px.pie(df, values='count', names='label',hover_data=['percent'],
-                        title="Vehicle Types - Filtered Data")
+    vehicle_type_fig2 = px.pie(df, values='count', names='label', #hover_data=['percent'], 
+                               hover_data=['label','count','percent'],
+                               title="Vehicle Types - Selected Data")
     vehicle_type_fig2.update_traces(
-                      text = df['percent'],
-                      textinfo='text',
+                      text = df['label'],
+                      textinfo='text+percent',
                       textposition='inside',
+                      hovertemplate='Vehicle Type: %{customdata[0][0]}<br>Count: %{customdata[0][1]}<br>Percent: %{customdata[0][2]}',                     
     )  
     vehicle_type_fig2.update_layout(showlegend=False, 
                              title_x=0.5,
                              title_y=0.95,
                              margin=dict(t=0,b=0,l=20,r=20))
+    
+    total_all = "Total Collisions In The View (All Data): " + str(collisions.shape[0])
+    total_filtered = "Total Collisions In The View (Selected Data): " + str(collisions2.shape[0])
         
     
-    return map_fig, map_fig2, month_fig, hour_fig, factor_fig, vehicle_type_fig, factor_fig2, vehicle_type_fig2, collisions.shape[0]
+    return map_fig, map_fig2, month_fig, hour_fig, factor_fig, vehicle_type_fig, factor_fig2, vehicle_type_fig2, total_all,total_filtered
   
 #-----------------------------------------------------------------------------
 
@@ -649,7 +534,7 @@ def update_pie_chart(clickData, dropdown_value):
      State('vehicle_types_dropdown', 'value'),
     ],
 )
-def update_pie_chart(clickData, dropdown_value):
+def update_pie_chart2(clickData, dropdown_value):
     if dropdown_value is not None: 
         current_value = dropdown_value
     else:
