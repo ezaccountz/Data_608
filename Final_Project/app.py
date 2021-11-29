@@ -12,6 +12,7 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
+import dash_bootstrap_components as dbc
 import plotly.express as px
 import datashader as ds, datashader.transfer_functions as tf
 from functools import partial
@@ -237,16 +238,23 @@ CONTENT_STYLE_90 = {"display": "inline-block","width": "88vw"}
 #Dash App
 #
 ##############################################################################
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 ##############################################################################
 #Dash App Layout
 #
 ##############################################################################
 app.layout = html.Div([
-    #Dropdown list for the user to select a year
+    
+    #Display a write-up on the visualization when the app starts, using a Bootstrap Modal 
+    dbc.Modal([
+         dbc.ModalHeader(dbc.ModalTitle("Project Description")),
+         dbc.ModalBody("TO BE ADDED"),
+    ], id="modal-body-scroll",size="xl",scrollable=True,is_open=True,),
+
     html.Div([
-         html.Label(children = "Year: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "4vw"}),   
+         #Dropdown list for the user to select a year
+         html.Label(children = "Year: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "4vw"}),  
          html.Div([
              dcc.Dropdown(
                         id="years_dropdown",
