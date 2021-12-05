@@ -246,13 +246,19 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 ##############################################################################
 app.layout = html.Div([
     
-    #Display a write-up on the visualization when the app starts, using a Bootstrap Modal 
+    #Display a write-up/description on the visualization when the app starts, using a Bootstrap Modal 
     dbc.Modal([
-         dbc.ModalHeader(dbc.ModalTitle("Project Description")),
-         dbc.ModalBody("TO BE ADDED"),
-    ], id="modal-body-scroll",size="xl",scrollable=True,is_open=True,),
-
+          dbc.ModalHeader(dbc.ModalTitle("Project Description"),style={'height': '30px'}),
+          dbc.ModalBody(html.Iframe(src='https://ezaccountz.github.io/data608/modal.html',
+                                    style={'position': 'relative', 'height': '650px', 'width': '100%'}
+                                    ),
+                        )
+    ], id="modal-body-scroll",size="xl",scrollable=False,is_open=True),
+    
     html.Div([
+         #Link to the write-up/description on the visualization
+         html.A('Project Description',href='https://ezaccountz.github.io/data608/modal.html', target="_blank", style = {"display": "inline-block","width": "8vw"}),
+        
          #Dropdown list for the user to select a year
          html.Label(children = "Year: ",style = {'font-weight': 'bold',"text-align": "left","display": "inline-block","width": "4vw"}),  
          html.Div([
