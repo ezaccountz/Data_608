@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	  <meta charset="utf-8">
+	  <title>Project Description</title>
+	  <meta name="author" content="Euclid Zhang">
+
+	</head>
+
+	<body>
+		<p>
+			CUNY School of Professional Studies <br>
+			DATA - 608 Knowledge and Visual Analytics <br>
+			Final Project <br>
+			Euclid Zhang <br>
+			12/01/2021
+		</p>
+		<hr>
+		<p>
+			<h2 style="text-align:center;">Project Description</h2>
+			<br>
+			Vehicle Collisions can cause injury, disability and even death to the individuals involved. Also, the financial cost of property damages is significant
+			Additionally, they may casue traffic jams that making eveyone on the road unhappy.
+			<br><br>
+			In this project, we will create a data visualization that presents:
+			<ul>
+				<li>When does collision occurs more often</li>
+				<li>Where does collision ooccurs more often</li>
+				<li>Which factors contribute to more collisions</li>
+				<li>What types of vehicles involve in more collisions</li>
+			</ul>
+		</p>
+		<hr>
+		<p>
+			<h2 style="text-align:center;">Data</h2>
+			<br>
+			Data Soucre: Motor Vehicle Collisions - Crashes (NYC Open Data)
+			<br><br>
+			link: <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">
+			https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95
+			</a>
+			<br><br>
+			Description: This data set contains details (such as date, time and geography location) 
+			of vehicle collisions starting from 7/1/2012. The data, is gathered from all police reported motor vehicle collisions in NYC.
+			Collisions with less than $1000 worth of damage is not required to file a police report and hence may be be included in the data set.
+			<br><br>
+			The following columns from the data set are being used for the analysis:
+			 <ul>
+				<li>CRASH DATE - The occurrence date of the collisions: 
+					<br>After the data is loaded to our app, the date value is separated into year and month for the analysis
+				</li>
+				<li>CRASH TIME - The occurrence time of the collisions:
+					<br>After the data is loaded to our app, the hour value (0-23) is extracted from the time for the analysis
+				</li>
+				<li>LATITUDE - The latitude coordinate of the collisions
+				</li>
+				<li>LONGITUDE - The longtitude coordinate of the collisions
+				</li>
+				<li>CONTRIBUTING FACTOR VEHICLE 1 - The factor contributing to the collision for the primary vehicle
+					<br>There are more than 60 unique values for the factors from the raw data. We will convert the original factors into
+					fewer number of revised factors using the manually created table from the following link
+					<br><a href="https://github.com/ezaccountz/Data_608/blob/main/Final_Project/factors.csv">
+					https://github.com/ezaccountz/Data_608/blob/main/Final_Project/factors.csv
+					</a>
+				</li>
+				<li>VEHICLE TYPE CODE 1 - The vehicle type of the primary vehicle
+					<br>There are more than 900 unique values for the vehicle types from the raw data. Most of the values are incomplete description of the vehicles.
+					For example, we have the vehicle types "COMER", "F650" and "CAT". We will convert these vehicle types into "Commercial", "Pickup Truck" and "Construction Vehicle".
+					We will convert all of the original vehicle types into fewer number of revised vehicle types using the manually created table from the following link
+					<br><a href="https://github.com/ezaccountz/Data_608/blob/main/Final_Project/vehicle_types.csv">
+					https://github.com/ezaccountz/Data_608/blob/main/Final_Project/vehicle_types.csv
+					</a>
+				</li>				
+			</ul> 	
+		</p>
+		<hr>
+		<p>
+			<h2 style="text-align:center;">User Interface Layout</h2>
+		
+			
+			<br>
+			<style type="text/css">
+			.tg  {border-collapse:collapse;border-spacing:0;}
+			.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+			  overflow:hidden;padding:10px 5px;word-break:normal;}
+			.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+			  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+			.tg .tg-0lax{text-align:left;vertical-align:top}
+			</style>
+			<table class="tg" style="width:700px">
+			<tbody>
+			  <tr style="height:20px">
+				<th class="tg-0lax" colspan="3"></th>
+				<th class="tg-0lax" colspan="9">Factors Drop Down</th>
+			  </tr>
+			  <tr style="height:20px">
+				<td class="tg-0lax" colspan="3">Year Drop Down</td>
+				<td class="tg-0lax" colspan="9">Vehicle Types Drop Down</td>
+			  </tr>
+			  <tr style="height:100px">
+				<td class="tg-0lax" colspan="4" rowspan="2">Monthly Distribution Bar Chart</td>
+				<td class="tg-0lax" colspan="8" rowspan="2">Hourly Distribution Bar Chart</td>
+			  </tr>
+			  <tr>
+			  </tr>
+			  <tr style="height:20px">
+				<td class="tg-0lax" colspan="6">Total number of collisions text [All Data]</td>
+				<td class="tg-0lax" colspan="6">Total number of collisions text [Selected Data]</td>
+			  </tr>
+			  <tr style="height:200px">
+				<td class="tg-0lax" colspan="6" rowspan="3">Collision Scatter Plot Map [All Data]</td>
+				<td class="tg-0lax" colspan="6" rowspan="3">Collision Scatter Plot Map [Selected Data]</td>
+			  </tr>
+			  <tr>
+			  </tr>
+			  <tr>
+			  </tr>
+			  <tr style="height:150px">
+				<td class="tg-0lax" colspan="3" rowspan="3">Factors Pie Chart [All Data]</td>
+				<td class="tg-0lax" colspan="3" rowspan="3">Vehicle Types Pie Chart [All Data]</td>
+				<td class="tg-0lax" colspan="3" rowspan="3">Factors Pie Chart [Selected Data]</td>
+				<td class="tg-0lax" colspan="3" rowspan="3">Vehicle Type Pie Chart [Selected Data]</td>
+			  </tr>
+			  <tr>
+			  </tr>
+			  <tr>
+			  </tr>
+			</tbody>
+			</table>
+			
+			<br>
+			***In the following description:
+			<br><b>[All Data]</b> indicates the visualization includes all collisions <b>within the view area</b> of the Collision Scatter Plot Maps and it is <b>not filtered</b> by the Factors and Vehicle Types
+			selected in the Factors Drop Down and Vehicle Types Drop Down.
+			<br><b>[Selected Data]</b> indicates the visualization includes all collisions <b>within the view area</b> of the Collision Scatter Plot Maps and it is <b>filtered</b> by the Factors and Vehicle Types
+			selected in the Factors Drop Down and Vehicle Types Drop Down.
+			
+			<ul>
+				<li>Year Drop Down: single selection, select the data set of which year</li>
+				<li>Factors Drop Down: multiple selection, select the factors of interest. A use may also click on a factor on the Factors Pie Chart [All Data] to select/unselect a factor</li>
+				<li>Vehicle Types Drop Down: multiple selection, select the vehicle types of interest. A use may also click on a vehicle type on the Vehicle Types Pie Chart [All Data] to
+				select/unselect a vehicle type</li>
+				<li>Monthly Distribution Bar Chart: a stacked bar chart the shows the number of collisions for each month through the year, within the view area of Collision Scatter Plot Maps. 
+				<br>The lower part of the bars shows the number of collisions for <b>Selected Data</b>.
+				<br>The whole bars (lower + upper) shows the number of collisions for <b>All Data</b>.
+				</li>
+				<li>Hourly Distribution Bar Chart: a stacked bar chart the shows the number of collisions for each hour through the year, within the view area of Collision Scatter Plot Maps.
+				<br>The lower part of the bars shows the number of collisions for <b>Selected Data</b>.
+				<br>The whole bars (lower + upper) shows the number of collisions for <b>All Data</b>.
+				</li>
+				<li>Total number of collisions text [All Data]: a text that shows the total number of collisions ploted for <b>All Data</b></li>
+				<li>Total number of collisions text [Selected Data]: a text that shows the total number of collisions for <b>Selected Data</b></li>
+				<li>Collision Scatter Plot Map [All Data]: a scatter plot on a map showing the collisions for <b>All Data</b>. A use may move or zoom in/out to select a different
+				view area. The view area of the Collision Scatter Plot Map [Selected Data] will also be updated accordingly</li>
+				<li>Collision Scatter Plot Map [Selected Data]: a scatter plot on a map showing the collisions for <b>Selected Data</b>. 
+				A use may move or zoom in/out to select a different view area. The view area of the Collision Scatter Plot Map [All Data] will also be updated accordingly</li>
+				<li>Factors Pie Chart [All Data]: a pie chart that shows the percentages of the factors for <b>All Data</b>. A use may click on a factor to select/unselect the factor from
+				the Factors Drop Down</li>
+				<li>Vehicle Types Pie Chart [All Data]: a pie chart that shows the percentages of the vehicle types for <b>All Data</b>. A use may click on a vehicle type to select/unselect the vehicle type from
+				the Vehicle Types Drop Down</li>
+				<li>Factors Pie Chart [Selected Data]: a pie chart that shows the percentages of the factors for the collisions for <b>Selected Data</b></li>
+				<li>Vehicle Types Pie Chart [Selected Data]: a pie chart that shows the percentages of the vehicle types for <b>Selected Data</b></li>				
+			</ul>
+		</p>
+	</body>
+</html>
