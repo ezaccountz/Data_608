@@ -92,6 +92,7 @@ plot_width  = int(800)
 plot_height = int(plot_width*0.421)
 
 #current loaded data set (2021)
+dfs = dict()
 current_collisions = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/lite_version/' + str(years[0])+ '.csv')  
 
 ##############################################################################
@@ -105,10 +106,11 @@ current_collisions = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/D
 def getDF(selected_year):
     
 #In the full version, the function will be used to load the raw data from the data base and clean up the data.
-#In this lite version, we simply load the pre-processed data from the csv files    
-    df = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/lite_version/' + str(selected_year)+ '.csv')  
-    current_collisions = df
-    return df
+#In this lite version, we simply load the pre-processed data from the csv files   
+    if not (selected_year in dfs): 
+        dfs.clear()
+        dfs[selected_year] = pd.read_csv('https://raw.githubusercontent.com/ezaccountz/Data_608/main/Final_Project/lite_version/' + str(selected_year)+ '.csv')  
+    return dfs[selected_year]
 
 ##############################################################################
 #create_image function
@@ -331,10 +333,8 @@ def update_plots(m1_relayoutData, m2_relayoutData, year, factors, vehicle_types)
     dashcc = dashcc.triggered[0]['prop_id'].split('.')[0]
     
     #get the dataframe for the selected year from the years_dropdown
-    if dashcc == 'years_dropdown':
-        collisions = getDF(year)
-    else:
-        collisions = current_collisions
+    collisions = getDF(year)
+    
       
     #initial coordinates and zoom level of the scatter map box
     x0 = NewYorkCity[0][0]
