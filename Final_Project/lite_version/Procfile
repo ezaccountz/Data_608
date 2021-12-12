@@ -1,0 +1,1 @@
+web: gunicorn nyc-vehicle-collisions-lite:server
